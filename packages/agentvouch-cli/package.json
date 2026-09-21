@@ -12,13 +12,13 @@
     "usdc",
     "cli"
   ],
-  "homepage": "https://github.com/dirtybits/agentvouch/tree/main/packages/agentvouch-cli#readme",
+  "homepage": "https://github.com/devndesigner6/agentvouch/tree/main/packages/agentvouch-cli#readme",
   "bugs": {
-    "url": "https://github.com/dirtybits/agentvouch/issues"
+    "url": "https://github.com/devndesigner6/agentvouch/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dirtybits/agentvouch.git",
+    "url": "git+https://github.com/devndesigner6/agentvouch.git",
     "directory": "packages/agentvouch-cli"
   },
   "license": "ISC",
