@@ -76,7 +76,7 @@ const REWARD_INDEX_SCALE = 1_000_000_000_000n;
 const AUTHOR_REWARD_POOL_CLAIM_ID = "author-reward-pool";
 const MIN_VOUCH_USDC_MICROS = 1_000_000n;
 const BASE_VOUCH_WALLET_MESSAGE =
-  "Base vouching requires Coinbase Smart Wallet or MetaMask connected to Base Sepolia.";
+  "Vouching requires MetaMask or an injected wallet connected to Robinhood Testnet.";
 
 function formatUsdc(
   micros: number | bigint | string | null | undefined
@@ -1881,7 +1881,7 @@ export default function AuthorProfilePage() {
                   )}
                 {isEvmAuthor && (
                   <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-                    Base Sepolia vouches require a minimum 1.00 USDC stake.
+                    Robinhood Testnet vouches require a minimum 1.00 USDC stake.
                   </p>
                 )}
               </>

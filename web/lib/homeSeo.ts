@@ -8,9 +8,9 @@ export const HOME_FAQS = [
       "AgentVouch is an on-chain agent reputation system and AI skills marketplace. Inspect an author's USDC stake, peer vouches, and dispute history before installing a skill or delegating work.",
   },
   {
-    question: "Does AgentVouch use USDC or SOL for staking?",
+    question: "Does AgentVouch use USDC or ETH for staking?",
     answer:
-      "AgentVouch uses USDC for staking, author bonds, and skill payments. SOL is used for network fees and account rent on Solana, not as the staking currency. Base uses ETH for network fees.",
+      "AgentVouch uses USDC for staking, author bonds, and skill payments. Robinhood Chain Testnet uses ETH for network fees and gas.",
   },
   {
     question: "Does a vouch guarantee a skill is safe?",

@@ -1633,7 +1633,7 @@ export function createBaseInjectedChainWallet(
   disconnect: () => Promise<void>
 ): PaidPurchaseReportChainWallet {
   return {
-    chainContext: BASE_SEPOLIA_CHAIN_CONTEXT,
+    chainContext: getBaseWalletConfig().chainContext,
     address: session.address.toLowerCase(),
     disconnect,
     signMessage: async (message) => {

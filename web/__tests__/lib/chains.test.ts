@@ -2,6 +2,8 @@ import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import {
   BASE_CHAIN_CONTEXT,
   BASE_SEPOLIA_CHAIN_CONTEXT,
+  ROBINHOOD_TESTNET_CHAIN_CONTEXT,
+  isRobinhoodTestnetDefaultEnabled,
   SOLANA_DEVNET_CHAIN_CONTEXT,
   SOLANA_MAINNET_CHAIN_CONTEXT,
   getDefaultChainContext,
@@ -96,9 +98,9 @@ describe("chains", () => {
 
   // Phase 8a default-chain seam (.agents/plans/base-port-chain-adapter-phase-8a.plan.md).
   describe("getDefaultChainContext", () => {
-    it("defaults to Base Sepolia with no env", () => {
-      expect(getDefaultChainContext()).toBe(BASE_SEPOLIA_CHAIN_CONTEXT);
-      expect(isBaseSepoliaDefaultEnabled()).toBe(true);
+    it("defaults to Robinhood Testnet with no env", () => {
+      expect(getDefaultChainContext()).toBe(ROBINHOOD_TESTNET_CHAIN_CONTEXT);
+      expect(isRobinhoodTestnetDefaultEnabled()).toBe(true);
     });
 
     it("rolls back to the configured Solana context via the solana alias", () => {
@@ -114,8 +116,8 @@ describe("chains", () => {
       // never sees this var) hydrates Base: a #418-class mismatch.
       process.env.AGENTVOUCH_DEFAULT_CHAIN_CONTEXT = "solana";
       delete process.env.NEXT_PUBLIC_AGENTVOUCH_DEFAULT_CHAIN_CONTEXT;
-      expect(getDefaultChainContext()).toBe(BASE_SEPOLIA_CHAIN_CONTEXT);
-      expect(isBaseSepoliaDefaultEnabled()).toBe(true);
+      expect(getDefaultChainContext()).toBe(ROBINHOOD_TESTNET_CHAIN_CONTEXT);
+      expect(isRobinhoodTestnetDefaultEnabled()).toBe(true);
     });
 
     it("honors a client-only NEXT_PUBLIC default var (the single render source)", () => {
@@ -146,6 +148,11 @@ describe("chains", () => {
       process.env.NEXT_PUBLIC_AGENTVOUCH_DEFAULT_CHAIN_CONTEXT =
         BASE_SEPOLIA_CHAIN_CONTEXT;
       expect(getDefaultChainContext()).toBe(BASE_SEPOLIA_CHAIN_CONTEXT);
+
+      process.env.AGENTVOUCH_DEFAULT_CHAIN_CONTEXT = ROBINHOOD_TESTNET_CHAIN_CONTEXT;
+      process.env.NEXT_PUBLIC_AGENTVOUCH_DEFAULT_CHAIN_CONTEXT =
+        ROBINHOOD_TESTNET_CHAIN_CONTEXT;
+      expect(getDefaultChainContext()).toBe(ROBINHOOD_TESTNET_CHAIN_CONTEXT);
     });
 
     it("never enables Base mainnet in Phase 8a (fail-closed to Solana)", () => {
@@ -162,7 +169,7 @@ describe("chains", () => {
     it("ignores invalid values and keeps the Base Sepolia default", () => {
       process.env.AGENTVOUCH_DEFAULT_CHAIN_CONTEXT = "not-a-chain";
       process.env.NEXT_PUBLIC_AGENTVOUCH_DEFAULT_CHAIN_CONTEXT = "not-a-chain";
-      expect(getDefaultChainContext()).toBe(BASE_SEPOLIA_CHAIN_CONTEXT);
+      expect(getDefaultChainContext()).toBe(ROBINHOOD_TESTNET_CHAIN_CONTEXT);
     });
 
     it("keeps normalizePersistedChainContext(null) on configured Solana, not the Base default", () => {

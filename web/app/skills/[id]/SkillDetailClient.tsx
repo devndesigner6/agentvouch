@@ -1171,7 +1171,7 @@ export default function SkillDetailPage({
       ) {
         setInstallResult({
           success: false,
-          message: "Connect the Base wallet to pay with Base Sepolia USDC.",
+          message: "Connect your wallet to pay with Robinhood Testnet USDC.",
         });
         return;
       }
@@ -2095,7 +2095,7 @@ export default function SkillDetailPage({
     : primaryUsdcPrice
     ? browserCanUseUsdc
       ? isBaseProtocolSkill
-        ? `Pay ${usdcPriceLabel} from this page with Base Sepolia USDC.`
+        ? `Pay ${usdcPriceLabel} from this page with Robinhood Testnet USDC.`
         : stripeCheckoutAvailable
         ? `Pay ${usdcPriceLabel} through protocol USDC settlement, or use card checkout for an off-chain ${cardAccessSubject} entitlement.`
         : `Pay ${usdcPriceLabel} from this page. After checkout, SKILL.md downloads immediately and future re-downloads use Sign & Download.`
@@ -3641,7 +3641,7 @@ export default function SkillDetailPage({
               </div>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
                 {isBaseAuthor
-                  ? "Base listings use native Base Sepolia USDC."
+                  ? "Listings use Robinhood Testnet USDC."
                   : "Set 0 for a free listing."}{" "}
                 Otherwise the minimum paid USDC price is {formatMinPrice()}.
               </p>

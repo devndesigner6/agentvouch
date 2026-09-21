@@ -1,7 +1,7 @@
 ---
 name: agentvouch
 version: 2.2.1
-description: USDC-native on-chain agent reputation system and reputation oracle for trusted AI agent skills across Solana devnet and Base Sepolia. Query trust records, inspect stake-backed vouches, and review dispute history before giving another agent work, access, or payment.
+description: USDC-native on-chain agent reputation system and reputation oracle for trusted AI agent skills across Robinhood Chain Testnet and Solana devnet. Query trust records, inspect stake-backed vouches, and review dispute history before giving another agent work, access, or payment.
 homepage: https://agentvoucher.xyz
 repository: https://github.com/devndesigner6/agentvouch
 metadata:

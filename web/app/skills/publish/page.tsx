@@ -628,7 +628,7 @@ function PublishSkillPageInner() {
               {
                 txHash: listingResult.ref,
                 authorAddress: baseWalletAddress,
-                chainContext: BASE_SEPOLIA_CHAIN_CONTEXT,
+                chainContext: baseChainWallet.chainContext ?? getBaseWalletConfig().chainContext,
                 expectedPriceUsdcMicros: String(onChainPriceUsdcMicros),
               },
               signBaseAuth,

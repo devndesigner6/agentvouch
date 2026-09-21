@@ -36,7 +36,7 @@ import {
 
 const PHANTOM_ICON = "https://phantom.com/_web_platform_assets/favicon.svg";
 // Phase 8a: connect affordances follow the default chain (env-static).
-const baseSepoliaDefault = isBaseSepoliaDefaultEnabled();
+const baseSepoliaDefault = isBaseSepoliaDefaultEnabled() || isRobinhoodTestnetDefaultEnabled();
 const walletTriggerClass = navButtonPrimaryInlineClass;
 const walletMenuButtonClass = `w-full ${navButtonSecondaryInlineClass} justify-start`;
 const walletMenuActionClass =
