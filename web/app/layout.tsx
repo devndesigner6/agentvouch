@@ -1,0 +1,69 @@
+import type { Metadata } from "next";
+import { Crimson_Pro, Inconsolata } from "next/font/google";
+import "./globals.css";
+import { AppFooter } from "@/components/AppFooter";
+import { AppNavbar } from "@/components/AppNavbar";
+import { WalletContextProvider } from "@/components/WalletContextProvider";
+import { ThemeProvider } from "next-themes";
+import { VercelAnalytics } from "@/components/VercelAnalytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
+import { buildDefaultMetadata } from "@/lib/seo";
+import { BuyerAuthProvider } from "@/components/BuyerAuthProvider";
+
+const inconsolata = Inconsolata({
+  subsets: ["latin"],
+  variable: "--font-inconsolata",
+});
+
+// Display serif for titles and intentional display text.
+const crimsonPro = Crimson_Pro({
+  subsets: ["latin"],
+  variable: "--font-crimson-pro",
+});
+
+export const metadata: Metadata = buildDefaultMetadata();
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EKFE31B4TJ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EKFE31B4TJ');
+          `}
+        </Script>
+      </head>
+      <body
+        className={`${inconsolata.variable} ${crimsonPro.variable} font-body`}
+      >
+        <BuyerAuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+          >
+            <WalletContextProvider>
+              <AppNavbar />
+              {children}
+              <AppFooter />
+            </WalletContextProvider>
+          </ThemeProvider>
+        </BuyerAuthProvider>
+        <VercelAnalytics />
+        <SpeedInsights />
+      </body>
+    </html>
+  );
+}

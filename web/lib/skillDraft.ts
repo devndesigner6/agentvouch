@@ -1,0 +1,127 @@
+export const MAX_SKILL_NAME_LENGTH = 64;
+export const MAX_SKILL_DESCRIPTION_LENGTH = 256;
+export const MAX_SKILL_CONTACT_LENGTH = 128;
+// Cap raw skill content (markdown SKILL.md). Generous for docs; bounds DB/IPFS abuse.
+export const MAX_SKILL_CONTENT_BYTES = 256 * 1024;
+// User-facing upload caps (POST /api/skills and POST /api/skills/[id]/versions).
+export const MAX_SKILL_TREE_FILES = 200;
+export const MAX_SKILL_TREE_BYTES = 5 * 1024 * 1024;
+// Whole-request ceiling: max tree (~5MB) as base64 (~1.33x) + multipart overhead.
+export const MAX_SKILL_UPLOAD_BYTES = 8 * 1024 * 1024;
+
+// Mirror-only caps: the sync engine processes third-party repos that may bundle
+// large doc sets or many reference files. These MUST NOT be used on any
+// user-facing upload path.
+export const MIRROR_MAX_SKILL_TREE_FILES = 512;
+export const MIRROR_MAX_SKILL_TREE_BYTES = 8 * 1024 * 1024;
+export const MIRROR_MAX_SKILL_UPLOAD_BYTES = 12 * 1024 * 1024;
+export const MAX_SKILL_FILE_BYTES = 1024 * 1024;
+export const RESERVED_SKILL_TAGS = new Set(["mirror"]);
+export const MAX_SKILL_TAGS = 5;
+export const MAX_SKILL_TAG_LENGTH = 32;
+
+function trimToLength(value: string, maxLength: number): string {
+  return value.trim().slice(0, maxLength);
+}
+
+export function parseFrontmatter(content: string): {
+  name: string;
+  description: string;
+  body: string;
+} {
+  const lines = content.split("\n");
+
+  let name = "";
+  let description = "";
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (!trimmed) continue;
+
+    if (trimmed.startsWith("# ") && !name) {
+      name = trimmed.slice(2).trim();
+      continue;
+    }
+
+    if (name && !description && !trimmed.startsWith("#")) {
+      description = trimmed;
+      break;
+    }
+  }
+
+  return { name, description, body: content };
+}
+
+export function slugify(text: string, trimEdges = true): string {
+  let slug = text
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .slice(0, MAX_SKILL_NAME_LENGTH);
+  if (trimEdges) slug = slug.replace(/^-|-$/g, "");
+  return slug;
+}
+
+export function finalizeSlug(text: string): string {
+  return slugify(text, true);
+}
+
+export function normalizeSkillName(text: string): string {
+  return trimToLength(text, MAX_SKILL_NAME_LENGTH);
+}
+
+export function normalizeSkillDescription(text: string): string {
+  return trimToLength(text, MAX_SKILL_DESCRIPTION_LENGTH);
+}
+
+export function normalizeSkillContact(text: string): string {
+  return trimToLength(text, MAX_SKILL_CONTACT_LENGTH);
+}
+
+export function normalizeSkillTags(tags: unknown): string[] {
+  if (!Array.isArray(tags)) return [];
+  const normalized: string[] = [];
+  const seen = new Set<string>();
+
+  for (const raw of tags) {
+    const tag = String(raw)
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, "-")
+      .replace(/-{2,}/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, MAX_SKILL_TAG_LENGTH);
+    if (!tag || RESERVED_SKILL_TAGS.has(tag) || seen.has(tag)) continue;
+    seen.add(tag);
+    normalized.push(tag);
+    if (normalized.length >= MAX_SKILL_TAGS) break;
+  }
+
+  return normalized;
+}
+
+export function deriveDraftMetadataFromContent(params: {
+  content: string;
+  currentName: string;
+  currentSkillId: string;
+  currentDescription: string;
+  nameManuallyEdited: boolean;
+  skillIdManuallyEdited: boolean;
+  descriptionManuallyEdited: boolean;
+}) {
+  const parsed = parseFrontmatter(params.content);
+
+  return {
+    name:
+      parsed.name && !params.nameManuallyEdited
+        ? normalizeSkillName(parsed.name)
+        : params.currentName,
+    skillId:
+      parsed.name && !params.skillIdManuallyEdited
+        ? slugify(normalizeSkillName(parsed.name))
+        : params.currentSkillId,
+    description:
+      parsed.description && !params.descriptionManuallyEdited
+        ? normalizeSkillDescription(parsed.description)
+        : params.currentDescription,
+  };
+}

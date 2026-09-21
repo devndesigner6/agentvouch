@@ -1,0 +1,25 @@
+{
+  "plugins": {
+    "neon-postgres": {
+      "enabled": true
+    },
+    "vercel": {
+      "enabled": true
+    },
+    "cursor-team-kit": {
+      "enabled": true
+    },
+    "stripe": {
+      "enabled": true
+    },
+    "phantom-connect": {
+      "enabled": true
+    },
+    "firecrawl": {
+      "enabled": true
+    },
+    "redis-development": {
+      "enabled": true
+    }
+  }
+}

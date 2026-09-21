@@ -1,0 +1,200 @@
+import fs from "fs";
+import path from "path";
+import { describe, expect, it } from "vitest";
+
+describe("skill detail source", () => {
+  it("passes card-access rollout state through both skill routes", () => {
+    const legacyRoute = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/page.tsx"),
+      "utf8"
+    );
+    const canonicalRoute = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/[skill]/page.tsx"),
+      "utf8"
+    );
+
+    for (const source of [legacyRoute, canonicalRoute]) {
+      expect(source).toContain("isBuyerCardAccessUiEnabled");
+      expect(source).toContain(
+        "buyerCardAccessEnabled={isBuyerCardAccessUiEnabled()}"
+      );
+    }
+  });
+
+  it("shows USDC price, receipt rent, and preflight warnings", () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+
+    expect(source).toContain("paid download docs");
+    expect(source).toContain("estimatedPurchaseRentLamports");
+    expect(source).toContain("purchasePreflightMessage");
+  });
+
+  it("documents signed download instructions for paid skills", () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+
+    expect(source).toContain(
+      "This connected wallet is the author for this skill. Use the author actions below to manage the listing instead of purchasing it."
+    );
+    expect(source).toContain('href="#author-actions"');
+    expect(source).toContain("Manage Listing");
+    expect(source).toContain("X-AgentVouch-Auth");
+    expect(source).toContain("listing-required");
+    expect(source).toContain("/docs#paid-skill-download");
+    expect(source).toContain("purchase_skill");
+    expect(source).toContain("buyerHasPurchased");
+    expect(source).toContain("UsdcIcon");
+    expect(source).toContain("Pay with USDC");
+    expect(source).toContain("getConfiguredSolanaExplorerAddressUrl");
+    expect(source).toContain("View PDA");
+    expect(source).toContain("Sign & Download");
+    expect(source).toContain("Paid content");
+    expect(source).toContain("sign with the buyer wallet to retrieve SKILL.md");
+    expect(source).toContain("buildDownloadRawMessage");
+    expect(source).toContain("buildStripeCheckoutMessage");
+    expect(source).toContain("createSignedDownloadAuthPayload");
+    expect(source).toContain("recommendedActionFromSignals(sigs)");
+    expect(source).toContain("@/lib/authPayload");
+    expect(source).not.toContain('@/lib/auth"');
+    expect(source).toContain("buildPaidSkillDownloadRequiredMessage");
+    expect(source).toContain("fetchSignedSkill");
+    expect(source).toContain("downloadEntitledSkill");
+    expect(source).toContain("handleStripeCheckout");
+    expect(source).toContain("Pay by Card");
+    expect(source).toContain("Card checkout (off-chain)");
+    expect(source).toContain("CARD_CHECKOUT_RECOURSE_DISCLOSURE");
+    expect(source).toContain("CARD_CHECKOUT_RECOURSE_DISCLOSURE_VERSION");
+    expect(source).toContain("/docs#card-checkout-recourse");
+    expect(source).toContain("cardRecourseAccepted");
+    expect(source).toContain("buildCardRecourseConsentKey");
+    expect(source).toContain("buyerAuthSessionKey");
+    expect(source).toContain("currentCardRecourseConsentKey");
+    expect(source).toContain(
+      "recorded separately from protocol USDC settlement"
+    );
+    expect(source).toContain(
+      "Protocol USDC purchases settle through purchase_skill,"
+    );
+    expect(source).toContain('stripeCheckoutStatus === "success"');
+    expect(source).toContain("/api/stripe/checkout");
+    expect(source).toContain("buyerCardAccessEnabled");
+    expect(source).toContain("buyerAccountHasAccess");
+    expect(source).toContain("/api/account/access-grants/");
+    expect(source).toContain("accountCanAuthorizeStripeCheckout");
+    expect(source).toMatch(
+      /!\(\s*stripeCheckoutAvailable && canAuthorizeStripeCheckout\s*\)/
+    );
+    expect(source).toContain("Account download complete.");
+    expect(source).toContain("[750, 2_000, 5_000]");
+    expect(source).toContain("BuyerAccountSessionObserver");
+    expect(source).toContain(
+      "const { isLoaded, isSignedIn, userId, sessionId } = useAuth()"
+    );
+    expect(source).toContain("[buyerAuthSignedIn, refreshBuyerAccountAccess]");
+    expect(source).not.toContain("fetchChainSkillContent");
+    expect(source).not.toContain("Buy & Install");
+  });
+
+  it("lets free skills download without forcing wallet connection", () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+
+    expect(source).toContain("handleFreeDownload");
+    expect(source).toContain('${isMultiFile ? "zip" : "raw"}');
+    expect(source).toContain("Download SKILL.md");
+    expect(source).toContain("without connecting a wallet");
+    expect(source).not.toContain("Connect wallet to install");
+  });
+
+  it("keeps repo-backed listing edits and repo version publishing as separate author actions", () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+
+    expect(source).toContain(
+      "Repo-backed listings stay pinned to the canonical"
+    );
+    expect(source).toContain("endpoint.");
+    expect(source).toContain("Publish New Version");
+    expect(source).toContain("buildPublisherAuthMessage");
+    expect(source).toContain('requestedAuthorAction === "publish-version"');
+    expect(source).toContain("Listing edits stay on the on-chain");
+  });
+
+  it("labels Base orphan repair as sync, not duplicate listing", () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+
+    expect(source).toContain("needsBaseListingSync");
+    expect(source).toContain("Sync Base Listing");
+    expect(source).toContain("Sync Now");
+    expect(source).toContain("Base listing linked");
+  });
+
+  it("passes the skill title into the multi-file tree", () => {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+
+    expect(source).toContain("skillName={skill.name}");
+  });
+
+  it("renders from an initial server snapshot before buyer hydration", () => {
+    const clientSource = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+    const pageSource = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/[skill]/page.tsx"),
+      "utf8"
+    );
+
+    expect(clientSource).toContain("initialSkill?: SkillDetail | null");
+    expect(clientSource).toContain(
+      "useState<SkillDetail | null>(initialSkill)"
+    );
+    expect(clientSource).toContain("useState(!initialSkill)");
+    expect(clientSource).toContain("refreshSkill({ includeBuyer: false })");
+    expect(clientSource).toContain("buyerChainContext?: string | null");
+    expect(clientSource).toContain("buyerAddress: activeWalletAddress");
+    expect(clientSource).toContain("buyerChainContext: activeChainContext");
+    expect(clientSource).toContain('params.set("trust", "live")');
+    expect(clientSource).toContain('cache: "no-store"');
+    expect(clientSource).not.toContain("if (skill) return");
+    expect(pageSource).toContain("loadSkillDetailSnapshot(route.id)");
+    expect(pageSource).toContain("initialSkill={initialSkill}");
+  });
+
+  it("keeps the Base A1 paid-report UI purchase-bound and feature-gated", () => {
+    const detailSource = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/SkillDetailClient.tsx"),
+      "utf8"
+    );
+    const reportSource = fs.readFileSync(
+      path.join(process.cwd(), "app/skills/[id]/PaidPurchaseReportPanel.tsx"),
+      "utf8"
+    );
+
+    expect(detailSource).toContain('kind === "evm-paid-purchase"');
+    expect(detailSource).toContain("<PaidPurchaseReportPanel");
+    expect(reportSource).toContain("BASE_PAID_PURCHASE_REPORTS_ENABLED");
+    expect(reportSource).toContain("purchase.purchaseId");
+    expect(reportSource).toContain("/paid-reports/verify");
+    expect(reportSource).toContain("A paid report posts a 5 USDC bond");
+    expect(reportSource).toContain("Founder/operator review is");
+    expect(reportSource).toContain("centralized. Rejection");
+    expect(reportSource).toContain("not a full-refund guarantee");
+    expect(reportSource).toContain('BigInt(report.claimDeadline ?? "0") >');
+  });
+});

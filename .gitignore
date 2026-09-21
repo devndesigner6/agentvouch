@@ -1,0 +1,68 @@
+# dependencies
+node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# anchor / solana
+.anchor
+target
+**/*.rs.bk
+test-ledger
+
+# next.js
+.next/
+out/
+
+# build / testing
+build
+dist
+coverage
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# env / secrets
+.env
+.env.local
+.env*.local
+*.secret
+.agent-keys/
+**/keypair*.json
+db-cutover-export*.json
+db-inventory*.json
+
+# tooling
+.vercel
+.firecrawl
+/agent-skills/
+
+# Cursor
+.cursor/hooks/
+
+# claude code — worktrees are ephemeral
+.claude/worktrees/
+web/public/skill-mockup.html
+.env*
+__pycache__/
+# eval run output (generated; curate baselines deliberately, don't commit raw runs)
+evals/skill-scan/results*.json
+evals/skill-scan/run.*.log
+.neon
+.a2a/
+a2a-logs/
