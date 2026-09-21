@@ -1,3 +1,4 @@
+import { getFallbackEnrichedSkills, getFallbackRepoSkills } from "@/lib/fallbackSkills";
 import { NextRequest, NextResponse, after } from "next/server";
 import { randomUUID } from "crypto";
 import { initializeDatabase, sql } from "@/lib/db";
@@ -692,6 +693,9 @@ export async function GET(request: NextRequest) {
         : await timing.measure("chain", () => fetchOnChainListings());
 
     let allSkills = mergeSkills(normalizedPgSkills, chainSkills);
+    if (allSkills.length === 0 && !author) {
+      allSkills = getFallbackRepoSkills() as unknown as MergedSkillRow[];
+    }
 
     if (author) {
       allSkills = allSkills.filter((s) => s.author_pubkey === author);

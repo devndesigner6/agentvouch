@@ -25,6 +25,7 @@ import { buildTrustSignals } from "@/lib/trustSignals";
 import {
   getConfiguredSolanaChainContext,
   BASE_SEPOLIA_CHAIN_CONTEXT,
+  ROBINHOOD_TESTNET_CHAIN_CONTEXT,
   normalizeInputChainContext,
   normalizePersistedChainContext,
 } from "@/lib/chains";
@@ -557,7 +558,7 @@ export async function PATCH(
       const submittedChainContext = normalizeInputChainContext(
         baseListing.chainContext
       );
-      if (submittedChainContext !== BASE_SEPOLIA_CHAIN_CONTEXT) {
+      if (submittedChainContext !== BASE_SEPOLIA_CHAIN_CONTEXT && submittedChainContext !== ROBINHOOD_TESTNET_CHAIN_CONTEXT) {
         return NextResponse.json(
           { error: "Base listings must use Base Sepolia" },
           { status: 400 }
@@ -682,8 +683,7 @@ export async function PATCH(
         );
       }
       if (
-        normalizeInputChainContext(row.chain_context) !==
-        BASE_SEPOLIA_CHAIN_CONTEXT
+        normalizeInputChainContext(row.chain_context) !== BASE_SEPOLIA_CHAIN_CONTEXT && normalizeInputChainContext(row.chain_context) !== ROBINHOOD_TESTNET_CHAIN_CONTEXT
       ) {
         return NextResponse.json(
           { error: "Base listings can only be linked to Base Sepolia skills" },

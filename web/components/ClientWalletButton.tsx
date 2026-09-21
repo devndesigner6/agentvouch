@@ -24,7 +24,8 @@ import {
   fetchAssociatedTokenAccountState,
   formatUsdcMicrosValue,
 } from "@/lib/agentvouchUsdc";
-import { isBaseSepoliaDefaultEnabled } from "@/lib/chains";
+import { isBaseSepoliaDefaultEnabled,
+  isRobinhoodTestnetDefaultEnabled } from "@/lib/chains";
 import { getConfiguredUsdcMint } from "@/lib/x402";
 import { useMounted } from "@/hooks/useMounted";
 import { PHANTOM_EMBEDDED_WALLET_NAME } from "@/lib/phantomEmbeddedWalletStandard";
@@ -446,6 +447,9 @@ export function ClientWalletButton() {
               </p>
               {wallet.phantomInstalled && (
                 <button
+                  onPointerDownCapture={() => {
+                    void baseWallet.disconnect();
+                  }}
                   onClick={() => {
                     void baseWallet
                       .disconnect()

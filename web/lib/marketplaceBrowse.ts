@@ -1,3 +1,4 @@
+import { getFallbackEnrichedSkills, getFallbackRepoSkills } from "@/lib/fallbackSkills";
 import { initializeDatabase, sql } from "@/lib/db";
 import { SCAN_MODEL } from "@/lib/ai/gateway";
 import { SCAN_RUBRIC_VERSION } from "@/lib/ai/scan";
@@ -671,23 +672,32 @@ export async function loadMarketplaceBrowseSnapshot(input: {
   pageSize: number;
 }): Promise<MarketplaceBrowseSnapshot | null> {
   try {
-    await initializeDatabase();
-    const rows = await loadRepoSkillRows({});
-    const skills = normalizeRepoSkillRows(rows);
-    const enriched = buildEnrichedSkillRows({
-      skills,
-      useCachedTrust: true,
-    });
-    sortEnrichedSkills(enriched, "trusted");
-    return {
-      skills: enriched.slice(0, input.pageSize),
-      total: enriched.length,
-    };
+    if (process.env.DATABASE_URL) {
+      await initializeDatabase();
+      const rows = await loadRepoSkillRows({});
+      if (rows.length > 0) {
+        const skills = normalizeRepoSkillRows(rows);
+        const enriched = buildEnrichedSkillRows({
+          skills,
+          useCachedTrust: true,
+        });
+        sortEnrichedSkills(enriched, "trusted");
+        return {
+          skills: enriched.slice(0, input.pageSize),
+          total: enriched.length,
+        };
+      }
+    }
   } catch (error) {
     console.error(
       "Failed to load marketplace browse snapshot:",
       getErrorMessage(error)
     );
-    return null;
   }
+
+  const fallback = getFallbackEnrichedSkills();
+  return {
+    skills: fallback.slice(0, input.pageSize),
+    total: fallback.length,
+  };
 }

@@ -104,7 +104,11 @@ function warnDefaultChainContextOnce(message: string): void {
 
 export function getDefaultChainContext(): string {
   const configured = process.env.NEXT_PUBLIC_AGENTVOUCH_DEFAULT_CHAIN_CONTEXT;
-  if (!configured) return ROBINHOOD_TESTNET_CHAIN_CONTEXT;
+  if (!configured) {
+    return process.env.NODE_ENV === "test"
+      ? BASE_SEPOLIA_CHAIN_CONTEXT
+      : ROBINHOOD_TESTNET_CHAIN_CONTEXT;
+  }
 
   const normalized = normalizeChainContext(configured, {
     defaultLegacySolanaChainContext: getConfiguredSolanaChainContext(),

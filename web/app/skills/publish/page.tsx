@@ -11,6 +11,7 @@ import {
 import { buildBaseAgentMetadataUri } from "@/lib/adapters/baseAgentMetadata";
 import type { ChainWallet } from "@/lib/adapters/types";
 import { BASE_SEPOLIA_CHAIN_CONTEXT } from "@/lib/chains";
+import { getBaseWalletConfig } from "@/lib/adapters/baseWalletConfig";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { UsdcIcon } from "@/components/UsdcIcon";
 import { encodeBase64 } from "@/lib/base64";
@@ -232,7 +233,7 @@ async function ensureBaseAuthorRegistered(
 
 type BaseListingPatchPayload = {
   authorAddress: string;
-  chainContext: typeof BASE_SEPOLIA_CHAIN_CONTEXT;
+  chainContext: string;
 } & (
   | {
       txHash: string;
@@ -643,7 +644,7 @@ function PublishSkillPageInner() {
               {
                 relinkExisting: true,
                 authorAddress: baseWalletAddress,
-                chainContext: BASE_SEPOLIA_CHAIN_CONTEXT,
+                chainContext: baseChainWallet.chainContext ?? getBaseWalletConfig().chainContext,
               },
               signBaseAuth,
               baseWalletAddress

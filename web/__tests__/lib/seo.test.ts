@@ -46,7 +46,7 @@ describe("search descriptions", () => {
     expect(metadata.openGraph?.description).toBe(metadata.description);
     expect(metadata.twitter?.description).toBe(metadata.description);
     expect(metadata.alternates?.canonical).toBe(
-      "https://agentvouch.xyz/skills"
+      "https://agentvoucher.xyz/skills"
     );
   });
 });

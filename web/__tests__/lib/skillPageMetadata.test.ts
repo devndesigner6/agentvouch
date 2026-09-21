@@ -24,7 +24,7 @@ describe("skill search metadata", () => {
     expect(metadata.description).toContain("5.25 USDC staked");
     expect(metadata.description).not.toMatch(/micros|allow|guarantee/i);
     expect(metadata.alternates?.canonical).toBe(
-      "https://agentvouch.xyz/skills/author/example"
+      "https://agentvoucher.xyz/skills/author/example"
     );
   });
 

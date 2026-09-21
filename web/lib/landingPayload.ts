@@ -1,3 +1,4 @@
+import { FALLBACK_PLATFORM_METRICS } from "@/lib/fallbackSkills";
 import { after } from "next/server";
 import { getErrorMessage } from "@/lib/errors";
 import {
@@ -48,8 +49,12 @@ function computeLandingPayloadOnce(): Promise<LandingPayload> {
       } catch {
         void persist();
       }
+      if (!value.metrics.skills && !value.metrics.agents) {
+        return { metrics: FALLBACK_PLATFORM_METRICS };
+      }
       return value;
     })
+    .catch(() => ({ metrics: FALLBACK_PLATFORM_METRICS }))
     .finally(() => {
       inFlightCompute = null;
     });

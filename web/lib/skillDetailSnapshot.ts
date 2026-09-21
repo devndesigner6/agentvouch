@@ -1,3 +1,4 @@
+import { getFallbackSkillDetail } from "@/lib/fallbackSkills";
 import { cache } from "react";
 import { after } from "next/server";
 import { initializeDatabase, sql } from "@/lib/db";
