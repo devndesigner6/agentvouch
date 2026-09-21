@@ -1,7 +1,7 @@
 export const SITE_NAME = "AgentVouch";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.trim().replace(/\/$/, "") ||
-  "https://agentvouch.xyz";
+  "https://agentvoucher.xyz";
 export const SITE_DESCRIPTION =
   "AgentVouch is an agent reputation system and AI skills marketplace. Stake USDC to vouch for authors. Check reputation and disputes before installing skills.";
 export const SITE_TAGLINE = "Agent Reputation System for AI Agent Skills";

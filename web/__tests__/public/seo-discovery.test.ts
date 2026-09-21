@@ -36,7 +36,7 @@ describe(".well-known/agentvouch.json", () => {
     expect(parsed.chain_context).toBe(CAIP2_DEVNET);
   });
 
-  it("points discovery and docs at agentvouch.xyz", () => {
+  it("points discovery and docs at agentvoucher.xyz", () => {
     // All advertised URLs must live on the canonical public base.
     const allUrls = [
       parsed.base_url,
@@ -46,7 +46,7 @@ describe(".well-known/agentvouch.json", () => {
     expect(allUrls.length).toBeGreaterThan(0);
     for (const url of allUrls) {
       expect(url).not.toMatch(/\s/);
-      expect(url).toMatch(/^https:\/\/agentvouch\.xyz(?:\/|$)/);
+      expect(url).toMatch(/^https:\/\/agentvoucher\.xyz(?:\/|$)/);
     }
   });
 

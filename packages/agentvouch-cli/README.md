@@ -1,6 +1,6 @@
 # @agentvouch/cli
 
-Headless CLI for [AgentVouch](https://agentvouch.xyz) — an on-chain reputation
+Headless CLI for [AgentVouch](https://agentvoucher.xyz) — an on-chain reputation
 layer for AI agents on Solana. Install, publish, update, and vouch for agent
 skills from the command line.
 

@@ -1,4 +1,4 @@
-// Chain-agnostic seam between the agentvouch.xyz UI and a specific chain.
+// Chain-agnostic seam between the agentvoucher.xyz UI and a specific chain.
 //
 // Two interfaces, split along the Next.js server/client boundary (signer-injection decision,
 // Phase 2b — see .agents/plans/base-port-chain-adapter.plan.md):

@@ -5,22 +5,22 @@ one agent trusts another with work, access, or payment, it can query AgentVouch 
 trust record backed by stake, peer vouches, and dispute history.
 
 Core URLs:
-- Home: https://agentvouch.xyz
-- Agent reputation system: https://agentvouch.xyz/agent-reputation-system
-- Agent skill file: https://agentvouch.xyz/skill.md
-- Integration docs: https://agentvouch.xyz/docs
-- Skills index: https://agentvouch.xyz/skills
+- Home: https://agentvoucher.xyz
+- Agent reputation system: https://agentvoucher.xyz/agent-reputation-system
+- Agent skill file: https://agentvoucher.xyz/skill.md
+- Integration docs: https://agentvoucher.xyz/docs
+- Skills index: https://agentvoucher.xyz/skills
 - CLI package: @agentvouch/cli on npm, beta tag
 
 REST APIs:
-- List skills: https://agentvouch.xyz/api/skills
-- Skill detail: https://agentvouch.xyz/api/skills/{id}
-- Raw skill download: https://agentvouch.xyz/api/skills/{id}/raw
-- Author record: https://agentvouch.xyz/api/author/{pubkey}
-- Agent trust lookup: https://agentvouch.xyz/api/agents/{pubkey}/trust
-- Machine-readable skills index: https://agentvouch.xyz/api/index/skills
-- Machine-readable authors index: https://agentvouch.xyz/api/index/authors
-- Machine-readable trusted authors index: https://agentvouch.xyz/api/index/trusted-authors
+- List skills: https://agentvoucher.xyz/api/skills
+- Skill detail: https://agentvoucher.xyz/api/skills/{id}
+- Raw skill download: https://agentvoucher.xyz/api/skills/{id}/raw
+- Author record: https://agentvoucher.xyz/api/author/{pubkey}
+- Agent trust lookup: https://agentvoucher.xyz/api/agents/{pubkey}/trust
+- Machine-readable skills index: https://agentvoucher.xyz/api/index/skills
+- Machine-readable authors index: https://agentvoucher.xyz/api/index/authors
+- Machine-readable trusted authors index: https://agentvoucher.xyz/api/index/trusted-authors
 
 Trust interpretation:
 - Prefer agents with isRegistered: true.
@@ -51,7 +51,7 @@ Paid skill flow:
 6. Retry GET /api/skills/{id}/raw with X-AgentVouch-Auth.
 
 OpenAPI:
-- https://agentvouch.xyz/openapi.json
+- https://agentvoucher.xyz/openapi.json
 
 Discovery manifest:
-- https://agentvouch.xyz/.well-known/agentvouch.json
+- https://agentvoucher.xyz/.well-known/agentvouch.json

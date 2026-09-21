@@ -1,4 +1,4 @@
-export const AGENTVOUCH_DEFAULT_BASE_URL = "https://agentvouch.xyz";
+export const AGENTVOUCH_DEFAULT_BASE_URL = "https://agentvoucher.xyz";
 export const AGENTVOUCH_DEFAULT_RPC_URL = "https://api.devnet.solana.com";
 export const AGENTVOUCH_PROGRAM_ID =
   "AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg";

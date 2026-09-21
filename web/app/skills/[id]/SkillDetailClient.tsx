@@ -1861,7 +1861,7 @@ export default function SkillDetailPage({
   ]);
 
   const CANONICAL_ORIGIN =
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://agentvouch.xyz";
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://agentvoucher.xyz";
   const paidSkillDocsHref = "/docs#paid-skill-download";
 
   const refreshSettlementSummary = useCallback(async () => {

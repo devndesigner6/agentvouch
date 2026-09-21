@@ -4,7 +4,7 @@ import { CONTENT_PAGES } from "@/lib/contentPages";
 // chain/program side-effects — keeps this generator import-light and unit-testable.
 const BASE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.trim().replace(/\/$/, "") ||
-  "https://agentvouch.xyz";
+  "https://agentvoucher.xyz";
 
 function abs(path: string): string {
   return `${BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;

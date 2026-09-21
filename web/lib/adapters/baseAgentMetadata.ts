@@ -1,6 +1,6 @@
 import { BASE_SEPOLIA_CHAIN_CONTEXT } from "@/lib/chains";
 
-const DEFAULT_AGENTVOUCH_ORIGIN = "https://agentvouch.xyz";
+const DEFAULT_AGENTVOUCH_ORIGIN = "https://agentvoucher.xyz";
 
 function getAgentVouchOrigin(): string {
   return (

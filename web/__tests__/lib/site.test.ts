@@ -3,14 +3,14 @@ import { describe, expect, it, vi } from "vitest";
 describe("site URL helpers", () => {
   it("trims whitespace from NEXT_PUBLIC_APP_URL before building canonical URLs", async () => {
     vi.resetModules();
-    vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://agentvouch.xyz\n");
+    vi.stubEnv("NEXT_PUBLIC_APP_URL", "https://agentvoucher.xyz\n");
 
     const { SITE_URL, getCanonicalUrl } = await import("@/lib/site");
 
-    expect(SITE_URL).toBe("https://agentvouch.xyz");
-    expect(getCanonicalUrl("/docs")).toBe("https://agentvouch.xyz/docs");
+    expect(SITE_URL).toBe("https://agentvoucher.xyz");
+    expect(getCanonicalUrl("/docs")).toBe("https://agentvoucher.xyz/docs");
     expect(getCanonicalUrl("/sitemap.xml")).toBe(
-      "https://agentvouch.xyz/sitemap.xml"
+      "https://agentvoucher.xyz/sitemap.xml"
     );
   });
 

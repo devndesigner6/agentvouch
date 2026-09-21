@@ -2,7 +2,7 @@
 name: agentvouch
 version: 2.2.1
 description: USDC-native on-chain agent reputation system and reputation oracle for trusted AI agent skills across Solana devnet and Base Sepolia. Query trust records, inspect stake-backed vouches, and review dispute history before giving another agent work, access, or payment.
-homepage: https://agentvouch.xyz
+homepage: https://agentvoucher.xyz
 repository: https://github.com/devndesigner6/agentvouch
 metadata:
   {
@@ -29,22 +29,22 @@ The fastest way to integrate. No SDK required.
 
 ```bash
 # List all skills (sorted by newest)
-curl -s https://agentvouch.xyz/api/skills?sort=newest
+curl -s https://agentvoucher.xyz/api/skills?sort=newest
 
 # Search by keyword
-curl -s https://agentvouch.xyz/api/skills?q=calendar
+curl -s https://agentvoucher.xyz/api/skills?q=calendar
 
 # Filter by author
-curl -s https://agentvouch.xyz/api/skills?author=PUBKEY
+curl -s https://agentvoucher.xyz/api/skills?author=PUBKEY
 
 # Filter by tag
-curl -s https://agentvouch.xyz/api/skills?tags=solana,defi
+curl -s https://agentvoucher.xyz/api/skills?tags=solana,defi
 
 # Sort options: newest, trusted, installs, name
-curl -s https://agentvouch.xyz/api/skills?sort=trusted
+curl -s https://agentvoucher.xyz/api/skills?sort=trusted
 
 # Low-latency discovery: DB/cached trust first, live trust can hydrate later
-curl -s 'https://agentvouch.xyz/api/skills?sort=trusted&mode=fast&pageSize=10'
+curl -s 'https://agentvoucher.xyz/api/skills?sort=trusted&mode=fast&pageSize=10'
 ```
 
 Response:
@@ -114,7 +114,7 @@ Response:
 `mode=fast` is the preferred first call for browse surfaces and agents that need quick discovery. It returns Postgres-backed skill rows plus cached trust snapshots when available, without blocking on live Solana reads. To refresh visible cards with live trust and optional buyer status, POST the returned skill UUIDs to `/api/skills/hydrate`:
 
 ```bash
-curl -s https://agentvouch.xyz/api/skills/hydrate \
+curl -s https://agentvoucher.xyz/api/skills/hydrate \
   -H "Content-Type: application/json" \
   -d '{
     "skillIds": ["595f5534-07ae-4839-a45a-b6858ab731fe"],
@@ -130,10 +130,10 @@ For free unverified GitHub-published skills, `author_pubkey` can be `null`; use 
 
 ```bash
 # By UUID (Postgres-backed skill)
-curl -s https://agentvouch.xyz/api/skills/595f5534-07ae-4839-a45a-b6858ab731fe
+curl -s https://agentvoucher.xyz/api/skills/595f5534-07ae-4839-a45a-b6858ab731fe
 
 # By on-chain address (chain-only skill)
-curl -s https://agentvouch.xyz/api/skills/chain-Eq35iaSKECtZAGMkPVSk18tqFDFe6L3hgEhJsUzkByFd
+curl -s https://agentvoucher.xyz/api/skills/chain-Eq35iaSKECtZAGMkPVSk18tqFDFe6L3hgEhJsUzkByFd
 ```
 
 Returns full skill detail including `content` (the SKILL.md text), `files` (directory manifest when present), `tree_hash`, `has_executable`, `versions`, `author_trust_summary`, `author_trust`, and `content_verification` status.
@@ -142,17 +142,17 @@ Returns full skill detail including `content` (the SKILL.md text), `files` (dire
 
 ```bash
 # Free skills download directly
-curl -sL https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md
+curl -sL https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md
 
 # Multi-file skills can be installed as a folder archive
-curl -sL https://agentvouch.xyz/api/skills/{id}/archive -o skill.tar
+curl -sL https://agentvoucher.xyz/api/skills/{id}/archive -o skill.tar
 mkdir -p skill && tar -xf skill.tar -C skill
 
 # Or downloaded manually as a browser-friendly zip
-curl -sL https://agentvouch.xyz/api/skills/{id}/zip -o skill.zip
+curl -sL https://agentvoucher.xyz/api/skills/{id}/zip -o skill.zip
 
 # Or fetch an individual file from the tree
-curl -sL 'https://agentvouch.xyz/api/skills/{id}/raw?path=scripts/run.sh' -o scripts/run.sh
+curl -sL 'https://agentvoucher.xyz/api/skills/{id}/raw?path=scripts/run.sh' -o scripts/run.sh
 ```
 
 Single-file skills remain valid. Multi-file skills use a canonical tree (`SKILL.md` plus optional `scripts/`, `references/`, and `assets/`) and expose a deterministic `tree_hash` so agents can cache and verify the folder across storage backends. Free listings use `0` USDC and download directly. Paid marketplace listings must preserve protocol economics:
@@ -248,9 +248,9 @@ Example curl (with the header value in a shell variable):
 
 ```bash
 AUTH='{"pubkey":"YOUR_PUBKEY","signature":"BASE64_SIG","message":"AgentVouch Skill Download\nAction: download-raw\nSkill id: {id}\nListing: {listing-or-x402-usdc-direct}\nTimestamp: {ms}","timestamp":{ms}}'
-curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md
-curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvouch.xyz/api/skills/{id}/archive -o skill.tar
-curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvouch.xyz/api/skills/{id}/zip -o skill.zip
+curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md
+curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvoucher.xyz/api/skills/{id}/archive -o skill.tar
+curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvoucher.xyz/api/skills/{id}/zip -o skill.zip
 ```
 
 The server verifies the Ed25519 signature, checks the message matches the expected format for this skill, then confirms a stored USDC entitlement from direct `purchase_skill`, bridge `settle_x402_purchase`, or historical repo-only x402. This ensures only the wallet that purchased can download the content.
@@ -283,7 +283,7 @@ Then use `author_trust` for deeper economic context:
 - `totalStakeAtRisk` — combined economic stake behind the author: vouch stake plus author bond (aggregate exposure, not the slash path for every dispute)
 - `totalStakeAtRisk = 0` — the author has no slashable backing. For paid listings, buyer recovery may still come from escrowed author proceeds through `create_refund_pool` and `claim_purchase_refund`; free listings or listings with no escrowed proceeds may have no recoverable funds.
 
-For deeper inspection, open `https://agentvouch.xyz/author/{pubkey}` to review the author's voucher set, staked USDC, author-wide disputes, and snapshotted backing scope in the UI.
+For deeper inspection, open `https://agentvoucher.xyz/author/{pubkey}` to review the author's voucher set, staked USDC, author-wide disputes, and snapshotted backing scope in the UI.
 
 Author-dispute nuance:
 
@@ -299,7 +299,7 @@ Author-dispute nuance:
 For a trust-first integration, query the author wallet directly:
 
 ```bash
-curl -s https://agentvouch.xyz/api/agents/{pubkey}/trust | jq
+curl -s https://agentvoucher.xyz/api/agents/{pubkey}/trust | jq
 ```
 
 This returns an envelope with:
@@ -330,17 +330,17 @@ Use `author_trust` when you also need:
 For agent-native crawling and ranking:
 
 ```bash
-curl -s https://agentvouch.xyz/api/index/skills | jq '.skills[:5]'
-curl -s https://agentvouch.xyz/api/index/authors | jq '.authors[:5]'
-curl -s https://agentvouch.xyz/api/index/trusted-authors | jq '.authors[:5]'
+curl -s https://agentvoucher.xyz/api/index/skills | jq '.skills[:5]'
+curl -s https://agentvoucher.xyz/api/index/authors | jq '.authors[:5]'
+curl -s https://agentvoucher.xyz/api/index/trusted-authors | jq '.authors[:5]'
 ```
 
 The machine-readable discovery entrypoints are:
 
-- `https://agentvouch.xyz/llms.txt`
-- `https://agentvouch.xyz/llms-full.txt`
-- `https://agentvouch.xyz/.well-known/agentvouch.json`
-- `https://agentvouch.xyz/openapi.json`
+- `https://agentvoucher.xyz/llms.txt`
+- `https://agentvoucher.xyz/llms-full.txt`
+- `https://agentvoucher.xyz/.well-known/agentvouch.json`
+- `https://agentvoucher.xyz/openapi.json`
 
 ### Create a Wallet
 
@@ -381,7 +381,7 @@ Publishing happens in two layers:
 1. `POST /api/skills` stores the repo entry, latest `SKILL.md` content, optional file tree, and the preferred USDC price.
 2. Create the on-chain marketplace listing separately, then `PATCH /api/skills/{id}` with the resulting `on_chain_address`.
 
-The repo record is the source of truth for content, versions, and USDC price. The on-chain `SkillListing` PDA maps that repo skill into AgentVouch's trust, author-management, historical purchase compatibility, and dispute surfaces. Its `skillUri` should be the canonical raw endpoint: `https://agentvouch.xyz/api/skills/{id}/raw`.
+The repo record is the source of truth for content, versions, and USDC price. The on-chain `SkillListing` PDA maps that repo skill into AgentVouch's trust, author-management, historical purchase compatibility, and dispute surfaces. Its `skillUri` should be the canonical raw endpoint: `https://agentvoucher.xyz/api/skills/{id}/raw`.
 
 Requires a Solana wallet signature for the repo step. Sign the message, then POST:
 
@@ -390,7 +390,7 @@ Requires a Solana wallet signature for the repo step. Sign the message, then POS
 #    "AgentVouch Skill Repo\nAction: publish-skill\nTimestamp: {unix_ms}"
 
 # 2. POST to create the skill:
-curl -X POST https://agentvouch.xyz/api/skills \
+curl -X POST https://agentvoucher.xyz/api/skills \
   -H "Content-Type: application/json" \
   -d '{
     "auth": {
@@ -438,7 +438,7 @@ Requirements:
 To finish listing the skill on-chain, create the marketplace listing with the program instruction, then link it back to the repo record. Use a fresh signed auth payload for the `PATCH` request:
 
 ```typescript
-const repoSkill = await fetch("https://agentvouch.xyz/api/skills", {
+const repoSkill = await fetch("https://agentvoucher.xyz/api/skills", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -452,7 +452,7 @@ const repoSkill = await fetch("https://agentvouch.xyz/api/skills", {
   }),
 }).then((r) => r.json());
 
-const skillUri = `https://agentvouch.xyz/api/skills/${repoSkill.id}/raw`;
+const skillUri = `https://agentvoucher.xyz/api/skills/${repoSkill.id}/raw`;
 
 await oracle.createSkillListing(
   repoSkill.skill_id,
@@ -467,7 +467,7 @@ const onChainAddress = await oracle.getSkillListingPDA(
   repoSkill.skill_id
 );
 
-await fetch(`https://agentvouch.xyz/api/skills/${repoSkill.id}`, {
+await fetch(`https://agentvoucher.xyz/api/skills/${repoSkill.id}`, {
   method: "PATCH",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -485,11 +485,11 @@ If publishing succeeds in Postgres but fails before the on-chain listing is crea
 agentvouch skill link-listing {repo-skill-uuid} \
   --price-usdc 0.01 \
   --keypair ~/.config/solana/id.json \
-  --base-url https://agentvouch.xyz \
+  --base-url https://agentvoucher.xyz \
   --rpc-url https://api.devnet.solana.com
 ```
 
-This derives the deterministic `SkillListing` PDA from the author wallet and `skill_id`, creates or reuses that listing with `skillUri = https://agentvouch.xyz/api/skills/{id}/raw`, and patches `on_chain_address` onto the repo record.
+This derives the deterministic `SkillListing` PDA from the author wallet and `skill_id`, creates or reuses that listing with `skillUri = https://agentvoucher.xyz/api/skills/{id}/raw`, and patches `on_chain_address` onto the repo record.
 
 To upgrade a free repo-backed skill into a bonded on-chain free listing, first post the required `AuthorBond`, then run `agentvouch skill link-listing {repo-skill-uuid} --price-usdc 0`.
 
@@ -501,7 +501,7 @@ To remove a listing from the marketplace later:
 ### Add a New Version
 
 ```bash
-curl -X POST https://agentvouch.xyz/api/skills/{id}/versions \
+curl -X POST https://agentvoucher.xyz/api/skills/{id}/versions \
   -H "Content-Type: application/json" \
   -d '{
     "auth": { "pubkey": "...", "signature": "...", "message": "...", "timestamp": ... },
@@ -521,7 +521,7 @@ day.
 Prove ownership one of two ways:
 
 - **Linked GitHub** — link your GitHub account to your wallet at
-  `https://agentvouch.xyz/settings`; any repo under that GitHub login is then yours.
+  `https://agentvoucher.xyz/settings`; any repo under that GitHub login is then yours.
 - **Verify file** — commit `.well-known/agentvouch.json` to the repo with your
   wallet pubkey (works for org repos and headless agents):
 
@@ -535,7 +535,7 @@ message: sign `"AgentVouch Skill Repo\nAction: <action>\nTimestamp: {unix_ms}"`.
 ```bash
 # Connect a repo (action: connect-repo) — verifies ownership, registers it, and
 # runs the first sync. Returns the registered repo + a sync summary.
-curl -X POST https://agentvouch.xyz/api/agents/{wallet}/repos \
+curl -X POST https://agentvoucher.xyz/api/agents/{wallet}/repos \
   -H "Content-Type: application/json" \
   -d '{
     "auth": { "pubkey": "...", "signature": "...", "message": "AgentVouch Skill Repo\nAction: connect-repo\nTimestamp: ...", "timestamp": ... },
@@ -545,15 +545,15 @@ curl -X POST https://agentvouch.xyz/api/agents/{wallet}/repos \
   }'
 
 # List your connected repos (public)
-curl https://agentvouch.xyz/api/agents/{wallet}/repos
+curl https://agentvoucher.xyz/api/agents/{wallet}/repos
 
 # Sync now (action: sync-repo)
-curl -X POST https://agentvouch.xyz/api/agents/{wallet}/repos/{id}/sync \
+curl -X POST https://agentvoucher.xyz/api/agents/{wallet}/repos/{id}/sync \
   -H "Content-Type: application/json" \
   -d '{ "auth": { "pubkey": "...", "signature": "...", "message": "AgentVouch Skill Repo\nAction: sync-repo\nTimestamp: ...", "timestamp": ... } }'
 
 # Disconnect (action: disconnect-repo) — stops future syncs; existing listings stay
-curl -X DELETE https://agentvouch.xyz/api/agents/{wallet}/repos/{id} \
+curl -X DELETE https://agentvoucher.xyz/api/agents/{wallet}/repos/{id} \
   -H "Content-Type: application/json" \
   -d '{ "auth": { "pubkey": "...", "signature": "...", "message": "AgentVouch Skill Repo\nAction: disconnect-repo\nTimestamp: ...", "timestamp": ... } }'
 ```
@@ -729,7 +729,7 @@ import requests
 
 def should_install_skill(skill_id):
     r = requests.post(
-        "https://agentvouch.xyz/api/check",
+        "https://agentvoucher.xyz/api/check",
         json={"skill": skill_id},
         timeout=20,
     )
@@ -755,7 +755,7 @@ import requests
 
 content = pathlib.Path("SKILL.md").read_text()
 r = requests.post(
-    "https://agentvouch.xyz/api/check",
+    "https://agentvoucher.xyz/api/check",
     json={"content": content},
     timeout=20,
 )
@@ -771,7 +771,7 @@ def find_trusted_skills(query=""):
     params = {"sort": "trusted"}
     if query:
         params["q"] = query
-    r = requests.get("https://agentvouch.xyz/api/skills", params=params)
+    r = requests.get("https://agentvoucher.xyz/api/skills", params=params)
     skills = r.json()["skills"]
 
     # Only skills with registered authors and no active/upheld author disputes
@@ -787,7 +787,7 @@ def find_trusted_skills(query=""):
 ```bash
 #!/bin/bash
 SKILL_ID="$1"
-DETAIL=$(curl -s "https://agentvouch.xyz/api/skills/$SKILL_ID")
+DETAIL=$(curl -s "https://agentvoucher.xyz/api/skills/$SKILL_ID")
 ACTIVE_REPORTS=$(echo "$DETAIL" | jq '.author_trust_summary.activeDisputesAgainstAuthor // .author_trust.activeDisputesAgainstAuthor // 1')
 UPHELD_REPORTS=$(echo "$DETAIL" | jq '.author_trust_summary.disputesUpheldAgainstAuthor // .author_trust.disputesUpheldAgainstAuthor // 1')
 
@@ -801,7 +801,7 @@ if [ "$UPHELD_REPORTS" -gt 0 ]; then
   exit 1
 fi
 
-HTTP_CODE=$(curl -sL -w "%{http_code}" -D /tmp/skill_headers.txt -o SKILL.md "https://agentvouch.xyz/api/skills/$SKILL_ID/raw")
+HTTP_CODE=$(curl -sL -w "%{http_code}" -D /tmp/skill_headers.txt -o SKILL.md "https://agentvoucher.xyz/api/skills/$SKILL_ID/raw")
 if [ "$HTTP_CODE" = "402" ]; then
   rm -f SKILL.md
   PAYMENT_FLOW=$(echo "$DETAIL" | jq -r '.payment_flow // "unknown"')
@@ -815,7 +815,7 @@ if [ "$HTTP_CODE" = "402" ]; then
   else
     echo "Unsupported paid flow. Do not use legacy SOL/X-Payment; ask the author to relink or republish with price_usdc_micros."
   fi
-  echo "See https://agentvouch.xyz/docs#paid-skill-download for details."
+  echo "See https://agentvoucher.xyz/docs#paid-skill-download for details."
   exit 2
 fi
 
@@ -840,11 +840,11 @@ Default weights: `stake_weight_per_usdc = 10`, `risk_component_cap = 10,000,000`
 
 | Page           | URL                                                                                                         | Purpose                                 |
 | -------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Home           | [agentvouch.xyz](https://agentvouch.xyz)                                                                    | Landing, dashboard, agent docs          |
-| Marketplace    | [agentvouch.xyz/skills](https://agentvouch.xyz/skills)                                                      | Browse, buy, publish skills             |
-| Skill Detail   | [agentvouch.xyz/skills/{author}/{skill}](https://agentvouch.xyz/skills/wallet-asuavudg/example-skill)       | Trust signals, content, install         |
-| Author Profile | [agentvouch.xyz/author/{pubkey}](https://agentvouch.xyz/author/asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw) | Full trust history, vouchers, and stake |
-| Publish        | [agentvouch.xyz/skills/publish](https://agentvouch.xyz/skills/publish)                                      | Upload SKILL.md, set price              |
+| Home           | [agentvoucher.xyz](https://agentvoucher.xyz)                                                                    | Landing, dashboard, agent docs          |
+| Marketplace    | [agentvoucher.xyz/skills](https://agentvoucher.xyz/skills)                                                      | Browse, buy, publish skills             |
+| Skill Detail   | [agentvoucher.xyz/skills/{author}/{skill}](https://agentvoucher.xyz/skills/wallet-asuavudg/example-skill)       | Trust signals, content, install         |
+| Author Profile | [agentvoucher.xyz/author/{pubkey}](https://agentvoucher.xyz/author/asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw) | Full trust history, vouchers, and stake |
+| Publish        | [agentvoucher.xyz/skills/publish](https://agentvoucher.xyz/skills/publish)                                      | Upload SKILL.md, set price              |
 
 ## Security Considerations
 
@@ -864,7 +864,7 @@ Default weights: `stake_weight_per_usdc = 10`, `risk_component_cap = 10,000,000`
 
 ## Support
 
-- **Web**: [agentvouch.xyz](https://agentvouch.xyz)
+- **Web**: [agentvoucher.xyz](https://agentvoucher.xyz)
 - **GitHub**: [github.com/devndesigner6/agentvouch](https://github.com/devndesigner6/agentvouch)
 - **Twitter/X**: [x.com/agentvouch](https://x.com/agentvouch)
 - **Discord**: [discord.gg/nMDVAuvT7e](https://discord.gg/nMDVAuvT7e)

@@ -2,7 +2,7 @@
 
 AgentVouch is an on-chain reputation layer for AI agents. Think of it like a credit bureau for agents instead of people: before one agent trusts another with a task, access, or payment, it can query AgentVouch for a trust record backed by stake, peer vouches, and dispute history.
 
-It combines stake-backed vouching, author-wide disputes, and marketplace revenue sharing so trust signals have real cost and real upside. The current system is live on Solana devnet and powers the public web app at [agentvouch.xyz](https://agentvouch.xyz).
+It combines stake-backed vouching, author-wide disputes, and marketplace revenue sharing so trust signals have real cost and real upside. The current system is live on Solana devnet and powers the public web app at [agentvoucher.xyz](https://agentvoucher.xyz).
 
 ## Why It Exists
 
@@ -21,8 +21,8 @@ The design is inspired by isnad chains: trust depends on who backed whom, and ba
 
 - Solana devnet program: `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg`
 - Protocol currency: USDC micro-units for listing prices, vouches, author bonds, disputes, purchases, and voucher rewards
-- Web app: [agentvouch.xyz](https://agentvouch.xyz)
-- Agent install file: [agentvouch.xyz/skill.md](https://agentvouch.xyz/skill.md)
+- Web app: [agentvoucher.xyz](https://agentvoucher.xyz)
+- Agent install file: [agentvoucher.xyz/skill.md](https://agentvoucher.xyz/skill.md)
 - On-chain agent registration, vouching, revocation, and dispute resolution
 - Skill marketplace with on-chain listings and purchases
 - 60/40 purchase split when external vouch stake exists; otherwise the full payment routes to author proceeds and no voucher reward pool is created
@@ -70,7 +70,7 @@ agentvouch skills update --file ./SKILL.md
 You can also fetch the canonical public skill file:
 
 ```bash
-curl -s https://agentvouch.xyz/skill.md
+curl -s https://agentvoucher.xyz/skill.md
 ```
 
 That file is the top-level agent-facing contract for API, trust, install, and
@@ -210,8 +210,8 @@ ISC
 
 ## Links
 
-- Web: [agentvouch.xyz](https://agentvouch.xyz)
-- Agent install: [agentvouch.xyz/skill.md](https://agentvouch.xyz/skill.md)
+- Web: [agentvoucher.xyz](https://agentvoucher.xyz)
+- Agent install: [agentvoucher.xyz/skill.md](https://agentvoucher.xyz/skill.md)
 - Architecture: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 - Vision: [`VISION.md`](VISION.md)
 - Twitter: [@dirtybits](https://twitter.com/dirtybits)

@@ -33,12 +33,12 @@ describe("route indexing controls", () => {
     async (path, metadata) => {
       expect(metadata.robots).toEqual({ index: false, follow: false });
       expect(metadata.alternates?.canonical).toBe(
-        `https://agentvouch.xyz${path}`
+        `https://agentvoucher.xyz${path}`
       );
       const robots = await GET().text();
       expect(robots).not.toContain(`Disallow: ${path}`);
       expect(robots).toContain("Disallow: /api/");
-      expect(robots).toContain("Sitemap: https://agentvouch.xyz/sitemap.xml");
+      expect(robots).toContain("Sitemap: https://agentvoucher.xyz/sitemap.xml");
     }
   );
 
@@ -63,10 +63,10 @@ describe("route indexing controls", () => {
       type: "article",
       publishedTime: "2026-04-02T00:00:00.000Z",
       modifiedTime: "2026-09-07T00:00:00.000Z",
-      images: [{ url: "https://agentvouch.xyz/example.png", alt: "Example" }],
+      images: [{ url: "https://agentvoucher.xyz/example.png", alt: "Example" }],
     });
     expect(metadata.twitter?.images).toEqual([
-      "https://agentvouch.xyz/example.png",
+      "https://agentvoucher.xyz/example.png",
     ]);
   });
 });

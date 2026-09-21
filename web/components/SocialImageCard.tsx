@@ -118,7 +118,7 @@ export function SocialImageCard() {
             color: C.faint,
           }}
         >
-          agentvouch.xyz
+          agentvoucher.xyz
         </div>
       </div>
 

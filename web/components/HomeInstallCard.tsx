@@ -7,7 +7,7 @@ import { ClientWalletButton } from "@/components/ClientWalletButton";
 type ToggleMode = "none" | "human" | "agent";
 
 const agentInstallInstructions = `1. Agent: load the AgentVouch skill
-curl -s https://agentvouch.xyz/skill.md
+curl -s https://agentvoucher.xyz/skill.md
 2. Follow the returned skill.md.
 3. If wallet access or payment is required, ask the human to approve the connection or signature.`;
 

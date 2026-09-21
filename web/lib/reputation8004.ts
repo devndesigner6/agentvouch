@@ -97,7 +97,7 @@ export async function writeUsdcPurchaseFeedback(input: {
         tag2: Tag.x402Svm,
         score: 100,
         endpoint: input.endpoint,
-        feedbackUri: `https://agentvouch.xyz/api/skills/${input.skillId}`,
+        feedbackUri: `https://agentvoucher.xyz/api/skills/${input.skillId}`,
       }
     );
 

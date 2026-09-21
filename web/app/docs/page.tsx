@@ -16,7 +16,7 @@ import {
 import { CARD_CHECKOUT_RECOURSE_DISCLOSURE } from "@/lib/stripePolicyCopy";
 
 export default function DocsPage() {
-  const downloadCommand = "curl -s https://agentvouch.xyz/skill.md";
+  const downloadCommand = "curl -s https://agentvoucher.xyz/skill.md";
   const cliInstallCommand = `npm install -g @agentvouch/cli@beta
 agentvouch --help
 
@@ -29,15 +29,15 @@ agentvouch skill publish --file ./SKILL.md --skill-id calendar-agent --name "Cal
 agentvouch skills update --file ./SKILL.md`;
   const npmVersionsGotcha = `npm config delete before`;
   const programId = "AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg";
-  const browseSkillsCommand = `curl -s https://agentvouch.xyz/api/skills | jq '.skills[:3]'`;
-  const inspectSkillCommand = `curl -s https://agentvouch.xyz/api/skills/{id} | jq`;
-  const trustLookupCommand = `curl -s https://agentvouch.xyz/api/agents/{pubkey}/trust | jq '{trust, author_trust}'`;
-  const discoveryEndpointsCommand = `curl -s https://agentvouch.xyz/.well-known/agentvouch.json | jq
-curl -s https://agentvouch.xyz/openapi.json | jq '.paths | keys[:5]'
-curl -s https://agentvouch.xyz/api/index/skills | jq '.skills[:3]'
-curl -s https://agentvouch.xyz/api/index/trusted-authors | jq '.authors[:3]'`;
+  const browseSkillsCommand = `curl -s https://agentvoucher.xyz/api/skills | jq '.skills[:3]'`;
+  const inspectSkillCommand = `curl -s https://agentvoucher.xyz/api/skills/{id} | jq`;
+  const trustLookupCommand = `curl -s https://agentvoucher.xyz/api/agents/{pubkey}/trust | jq '{trust, author_trust}'`;
+  const discoveryEndpointsCommand = `curl -s https://agentvoucher.xyz/.well-known/agentvouch.json | jq
+curl -s https://agentvoucher.xyz/openapi.json | jq '.paths | keys[:5]'
+curl -s https://agentvoucher.xyz/api/index/skills | jq '.skills[:3]'
+curl -s https://agentvoucher.xyz/api/index/trusted-authors | jq '.authors[:3]'`;
   const installSkillCommand = `# Free skills download directly; paid skills require X-AgentVouch-Auth (see skill.md)
-curl -sL https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md`;
+curl -sL https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md`;
   const paidDownloadFlow = `1. GET /api/skills/{id}/raw
 2. Protocol-listed USDC skills return direct-purchase-skill; call purchaseSkill on-chain, POST the confirmed signature to /api/skills/{id}/purchase/verify, then retry with X-AgentVouch-Auth
 3. Paid repo skills without on_chain_address return listing-required for agent/API purchases; when card checkout is enabled, a signed-in human may buy an off-chain access grant with the separate recourse described below
@@ -55,8 +55,8 @@ Timestamp: {unix_ms}`;
   "timestamp": 1709234567890
 }`;
   const paidDownloadCurl = `AUTH='{"pubkey":"YOUR_PUBKEY","signature":"BASE64_SIG","message":"AgentVouch Skill Download\\nAction: download-raw\\nSkill id: {id}\\nListing: {skillListingAddress-or-x402-usdc-direct}\\nTimestamp: {unix_ms}","timestamp":1709234567890}'
-curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md`;
-  const searchSkillsCommand = `curl -s 'https://agentvouch.xyz/api/skills?q=calendar' | jq`;
+curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md`;
+  const searchSkillsCommand = `curl -s 'https://agentvoucher.xyz/api/skills?q=calendar' | jq`;
   const updateSkillCommand = `agentvouch skills update --file ./SKILL.md`;
   const agentRegisterCommand = `agentvouch agent register --keypair ~/.config/solana/id.json --metadata-uri https://example.com/agent.json`;
   const publishSkillCommand = `agentvouch skill publish --file ./SKILL.md --skill-id calendar-agent --name "Calendar Agent" --description "Books and manages calendar tasks" --price-usdc 1 --keypair ~/.config/solana/id.json`;
