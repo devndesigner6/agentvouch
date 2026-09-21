@@ -64,13 +64,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  // Let failed ISR refreshes retain the previous complete sitemap. Returning
-  // static pages on a database error would silently drop the whole catalog.
-  const rows = await sql()<SkillSitemapRow>`
-      SELECT id, skill_id, public_slug, public_author_slug, author_pubkey, updated_at
-      FROM skills
-      ORDER BY updated_at DESC
-    `;
+  let rows: SkillSitemapRow[] = [];
+  try {
+    if (process.env.DATABASE_URL) {
+      rows = await sql()<SkillSitemapRow>`
+        SELECT id, skill_id, public_slug, public_author_slug, author_pubkey, updated_at
+        FROM skills
+        ORDER BY updated_at DESC
+      `;
+    }
+  } catch (error) {
+    console.warn("Sitemap: Database unavailable at build time, using static pages fallback:", error);
+  }
 
   const skillPages: MetadataRoute.Sitemap = rows.map((row) => ({
     url: getCanonicalUrl(getPublicSkillPath(row)),
