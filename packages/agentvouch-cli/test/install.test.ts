@@ -47,7 +47,7 @@ describe("installSkill", () => {
     const result = await installSkill({
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
       out: outputPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -106,7 +106,7 @@ describe("installSkill", () => {
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
       out: outputPath,
       tree: true,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -180,7 +180,7 @@ describe("installSkill", () => {
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
       out: outputPath,
       keypairPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -239,7 +239,7 @@ describe("installSkill", () => {
         id: "595f5534-07ae-4839-a45a-b6858ab731fe",
         out: outputPath,
         keypairPath,
-        baseUrl: "https://agentvouch.xyz",
+        baseUrl: "https://agentvoucher.xyz",
         rpcUrl: "https://api.devnet.solana.com",
       })
     ).rejects.toThrow("has no linked on-chain SkillListing");
@@ -282,7 +282,7 @@ describe("installSkill", () => {
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
       out: outputPath,
       keypairPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -306,7 +306,7 @@ describe("installSkill", () => {
           x402Version: 2,
           error: "Payment required",
           resource: {
-            url: "https://agentvouch.xyz/api/skills/skill-id/raw",
+            url: "https://agentvoucher.xyz/api/skills/skill-id/raw",
             description: "AgentVouch skill",
             mimeType: "text/markdown; charset=utf-8",
           },
@@ -351,7 +351,7 @@ describe("installSkill", () => {
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
       out: outputPath,
       keypairPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 

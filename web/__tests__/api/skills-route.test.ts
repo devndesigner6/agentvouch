@@ -143,7 +143,7 @@ const mockGetGithubSessionFromRequest =
 const mockAfter = after as unknown as ReturnType<typeof vi.fn>;
 const PATCH_SKILL_ID = "00000000-0000-4000-8000-000000000001";
 const PATCH_SKILL_URL = `http://localhost/api/skills/${PATCH_SKILL_ID}`;
-const PATCH_SKILL_RAW_URL = `https://agentvouch.xyz/api/skills/${PATCH_SKILL_ID}/raw`;
+const PATCH_SKILL_RAW_URL = `https://agentvoucher.xyz/api/skills/${PATCH_SKILL_ID}/raw`;
 
 function makeRequest(body: Record<string, unknown>) {
   return new NextRequest("http://localhost/api/skills", {

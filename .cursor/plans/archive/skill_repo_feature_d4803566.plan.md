@@ -250,7 +250,7 @@ Build the UI against the working API. Still using seeded test data.
   - Content hash verification status
 - Rendered SKILL.md content (markdown to HTML)
 - Version history with changelogs
-- Install command: `curl -s https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md`
+- Install command: `curl -s https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md`
 - Link to marketplace listing (if paid)
 
 **B4. Install tracking** — raw endpoint increments `total_installs` counter

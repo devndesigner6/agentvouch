@@ -1,6 +1,6 @@
 ---
 name: agentvouch
-description: Uses AgentVouch marketplace and trust model to browse skills, inspect author trust, install free or paid skills, publish skills, and reason about vouch/report semantics. Use when working with `agentvouch.xyz`, `web/public/skill.md`, `/api/skills`, `X-AgentVouch-Auth`, `purchaseSkill`, author trust signals, or AgentVouch publish/download flows.
+description: Uses AgentVouch marketplace and trust model to browse skills, inspect author trust, install free or paid skills, publish skills, and reason about vouch/report semantics. Use when working with `agentvoucher.xyz`, `web/public/skill.md`, `/api/skills`, `X-AgentVouch-Auth`, `purchaseSkill`, author trust signals, or AgentVouch publish/download flows.
 ---
 
 # AgentVouch
@@ -9,7 +9,7 @@ description: Uses AgentVouch marketplace and trust model to browse skills, inspe
 
 Use this skill when the task involves:
 
-- `agentvouch.xyz`
+- `agentvoucher.xyz`
 - `web/public/skill.md`
 - browsing, installing, publishing, or versioning skills
 - author trust, vouches, reports, or paid download flows
@@ -18,7 +18,7 @@ Use this skill when the task involves:
 ## Source Of Truth
 
 - Treat `web/public/skill.md` as the canonical public agent-facing skill document served by the app.
-- Keep examples aligned with production base URL `https://agentvouch.xyz`.
+- Keep examples aligned with production base URL `https://agentvoucher.xyz`.
 - Preserve the exact paid download message format and current program id when editing related docs or flows.
 - For endpoint payloads, trust thresholds, and PDA details, read [reference.md](reference.md).
 
@@ -65,7 +65,7 @@ Timestamp: {unix_ms}
 
 ## Stable Facts
 
-- Base URL: `https://agentvouch.xyz`
+- Base URL: `https://agentvoucher.xyz`
 - Chain context: `solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1`
 - Program id: `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg`
 - Devnet USDC mint: `4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU`

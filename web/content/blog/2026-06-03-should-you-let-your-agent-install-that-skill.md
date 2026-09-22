@@ -2,7 +2,7 @@
 title: "Should You Let Your Agent Install That Skill?"
 description: "Trusted agent skills, reputation, economics, and security."
 date: 2026-06-03
-image: https://agentvouch.xyz/blog/lobster-reading-skill-file.png
+image: https://agentvoucher.xyz/blog/lobster-reading-skill-file.png
 tags:
   - trusted agent skills
   - trusted skills marketplace
@@ -14,7 +14,7 @@ tags:
 
 *Trusted agent skills, reputation, economics, and security.*
 
-![A lobster reading a skill.md file at a workstation](https://agentvouch.xyz/blog/lobster-reading-skill-file.png)
+![A lobster reading a skill.md file at a workstation](https://agentvoucher.xyz/blog/lobster-reading-skill-file.png)
 
 *A skill can be instructions, code, and resources. That portability is the feature and the risk.*
 
@@ -34,7 +34,7 @@ Stars and downloads are not reputation. They are popularity signals, and popular
 
 This is not hypothetical:
 
-![Silverfort headline about a ClawHub vulnerability that let attackers manipulate rankings](https://agentvouch.xyz/blog/hijacking-trust-clawhub.png)
+![Silverfort headline about a ClawHub vulnerability that let attackers manipulate rankings](https://agentvoucher.xyz/blog/hijacking-trust-clawhub.png)
 
 *[Silverfort researchers documented](https://www.silverfort.com/blog/clawhub-vulnerability-enables-attackers-to-manipulate-rankings-to-become-the-number-one-skill/) a ClawHub ranking-manipulation vulnerability that let malicious skills reach prominent marketplace positions.*
 
@@ -77,7 +77,7 @@ The agent economy needs something in the middle:
 
 **Open publishing with real reputation.**
 
-That is what AgentVouch is trying to build: a [trusted skills marketplace](https://agentvouch.xyz/skills) for open agent tooling.
+That is what AgentVouch is trying to build: a [trusted skills marketplace](https://agentvoucher.xyz/skills) for open agent tooling.
 
 ## Reputation With Consequences
 
@@ -127,9 +127,9 @@ That is a different incentive model than stars, downloads, or vibes.
 
 The first useful version of AgentVouch is simple: before an agent runs a skill, let it ask whether the skill is safe.
 
-That already works for skills listed on AgentVouch today. Open any skill on [agentvouch.xyz](https://agentvouch.xyz) and you see two things together: an automatic security scan verdict — `avoid` or `review`, with the specific findings it surfaced — and a trust record: the author, any backing or vouches, dispute history, and whether the skill has changed.
+That already works for skills listed on AgentVouch today. Open any skill on [agentvoucher.xyz](https://agentvoucher.xyz) and you see two things together: an automatic security scan verdict — `avoid` or `review`, with the specific findings it surfaced — and a trust record: the author, any backing or vouches, dispute history, and whether the skill has changed.
 
-![AgentVouch trust signals showing AI security scan, on-chain identity, vouches, author bond, and dispute history](https://agentvouch.xyz/blog/trust-signals.png)
+![AgentVouch trust signals showing AI security scan, on-chain identity, vouches, author bond, and dispute history](https://agentvoucher.xyz/blog/trust-signals.png)
 
 *AgentVouch combines advisory scans with on-chain trust signals. The scan is a warning sensor; the vouches, bond, and dispute record are the reputation layer.*
 
@@ -176,7 +176,7 @@ That is what we are building.
 
 AgentVouch is early, open source, and live in devnet form:
 
-- Try it: [agentvouch.xyz](https://agentvouch.xyz)
+- Try it: [agentvoucher.xyz](https://agentvoucher.xyz)
 - Code: [github.com/dirtybits/agentvouch](https://github.com/dirtybits/agentvouch)
 - Follow: [@agentvouch](https://x.com/agentvouch)
 

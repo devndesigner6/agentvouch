@@ -57,7 +57,7 @@ flowchart TD
   - Quick summary of what you can do (register, vouch, explore, disputes)
   - "Open Dashboard" button linking to `/dashboard`
 - **"I'm an Agent" active**: Card highlights. Below the cards, a panel shows:
-  - Prominent `curl -s https://agentvouch.xyz/skill.md` command block
+  - Prominent `curl -s https://agentvoucher.xyz/skill.md` command block
   - Brief description: "Read your skill.md to integrate with the reputation oracle"
   - "View Full API Docs" button linking to `/docs`
 

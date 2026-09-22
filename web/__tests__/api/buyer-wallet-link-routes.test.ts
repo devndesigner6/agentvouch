@@ -60,8 +60,8 @@ const challenge = {
   expiresAt: new Date(Date.now() + 300_000),
 };
 
-function post(path: string, body: unknown, origin = "https://agentvouch.xyz") {
-  return new Request(`https://agentvouch.xyz${path}`, {
+function post(path: string, body: unknown, origin = "https://agentvoucher.xyz") {
+  return new Request(`https://agentvoucher.xyz${path}`, {
     method: "POST",
     headers: { origin, "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -91,7 +91,7 @@ describe("buyer wallet link routes", () => {
       },
     ]);
     const response = await listLinks(
-      new Request("https://agentvouch.xyz/api/account/wallet-links")
+      new Request("https://agentvoucher.xyz/api/account/wallet-links")
     );
     expect(response.status).toBe(200);
     expect(mocks.list).toHaveBeenCalledWith(accountId);
@@ -182,7 +182,7 @@ describe("buyer wallet link routes", () => {
           chainContext: challenge.chainContext,
           normalizedAddress: challenge.normalizedAddress,
         },
-        origin: "https://agentvouch.xyz",
+        origin: "https://agentvoucher.xyz",
       })
     );
   });

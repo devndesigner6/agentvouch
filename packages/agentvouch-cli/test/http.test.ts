@@ -64,7 +64,7 @@ describe("AgentVouchApiClient", () => {
         }
       )
     );
-    const client = new AgentVouchApiClient("https://agentvouch.xyz");
+    const client = new AgentVouchApiClient("https://agentvoucher.xyz");
 
     const result = await client.listSkills({
       q: "calendar",
@@ -75,7 +75,7 @@ describe("AgentVouchApiClient", () => {
     });
 
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://agentvouch.xyz/api/skills?q=calendar&sort=trusted&author=asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw&tags=calendar%2Cops&page=2"
+      "https://agentvoucher.xyz/api/skills?q=calendar&sort=trusted&author=asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw&tags=calendar%2Cops&page=2"
     );
     expect(result.pagination.totalPages).toBe(2);
     expect(result.skills[0]?.skill_id).toBe("calendar-agent");
@@ -92,7 +92,7 @@ describe("AgentVouchApiClient", () => {
         headers: { "Content-Type": "application/json" },
       })
     );
-    const client = new AgentVouchApiClient("https://agentvouch.xyz");
+    const client = new AgentVouchApiClient("https://agentvoucher.xyz");
 
     try {
       await client.listSkills();
@@ -147,12 +147,12 @@ describe("AgentVouchApiClient", () => {
         }
       )
     );
-    const client = new AgentVouchApiClient("https://agentvouch.xyz");
+    const client = new AgentVouchApiClient("https://agentvoucher.xyz");
 
     const result = await client.listAuthors();
 
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://agentvouch.xyz/api/index/authors"
+      "https://agentvoucher.xyz/api/index/authors"
     );
     expect(result.total).toBe(1);
     expect(result.authors[0]?.author_trust_summary?.reputationScore).toBe(123);
@@ -173,12 +173,12 @@ describe("AgentVouchApiClient", () => {
         }
       )
     );
-    const client = new AgentVouchApiClient("https://agentvouch.xyz");
+    const client = new AgentVouchApiClient("https://agentvoucher.xyz");
 
     const result = await client.listAuthors({ trusted: true });
 
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://agentvouch.xyz/api/index/trusted-authors"
+      "https://agentvoucher.xyz/api/index/trusted-authors"
     );
     expect(result.total).toBe(0);
   });
@@ -220,14 +220,14 @@ describe("AgentVouchApiClient", () => {
         }
       )
     );
-    const client = new AgentVouchApiClient("https://agentvouch.xyz");
+    const client = new AgentVouchApiClient("https://agentvoucher.xyz");
 
     const result = await client.getAgentTrust(
       "asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw"
     );
 
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://agentvouch.xyz/api/agents/asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw/trust"
+      "https://agentvoucher.xyz/api/agents/asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw/trust"
     );
     expect(result.trust.reputationScore).toBe(123);
     expect(result.author_trust?.authorBondUsdcMicros).toBe(500000);

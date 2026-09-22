@@ -35,7 +35,7 @@ isProject: false
 - The app has only one global metadata block in [`web/app/layout.tsx`](/Users/andysustic/Repos/agent-reputation-oracle/web/app/layout.tsx): title `AgentVouch` and description `On-chain reputation system for AI agents on Solana`.
 - Public routes exist for `/`, `/docs`, `/skills`, `/skills/[id]`, `/author/[pubkey]`, and `/competition`, but there is no route-specific metadata.
 - There is no sitemap, no robots file, no canonical metadata, no Open Graph/Twitter metadata, and no JSON-LD.
-- Strong explanatory content lives in repo docs like [`README.md`](/Users/andysustic/Repos/agent-reputation-oracle/README.md), [`VISION.md`](/Users/andysustic/Repos/agent-reputation-oracle/VISION.md), and [`docs/ARCHITECTURE.md`](/Users/andysustic/Repos/agent-reputation-oracle/docs/ARCHITECTURE.md), but most of that content is not published as first-class pages on `agentvouch.xyz`.
+- Strong explanatory content lives in repo docs like [`README.md`](/Users/andysustic/Repos/agent-reputation-oracle/README.md), [`VISION.md`](/Users/andysustic/Repos/agent-reputation-oracle/VISION.md), and [`docs/ARCHITECTURE.md`](/Users/andysustic/Repos/agent-reputation-oracle/docs/ARCHITECTURE.md), but most of that content is not published as first-class pages on `agentvoucher.xyz`.
 - Agent-facing discovery exists in [`web/public/skill.md`](/Users/andysustic/Repos/agent-reputation-oracle/web/public/skill.md) and [`web/app/api/skills/route.ts`](/Users/andysustic/Repos/agent-reputation-oracle/web/app/api/skills/route.ts), but there is no dedicated machine-readable manifest, no `llms.txt`, and no direct trust lookup endpoint for agents deciding whether to trust another agent.
 
 ## Priority 1: Fix Technical SEO Basics
@@ -47,7 +47,7 @@ isProject: false
   - [`web/app/skills/page.tsx`](/Users/andysustic/Repos/agent-reputation-oracle/web/app/skills/page.tsx)
   - [`web/app/skills/[id]/page.tsx`](/Users/andysustic/Repos/agent-reputation-oracle/web/app/skills/[id]/page.tsx)
   - [`web/app/author/[pubkey]/page.tsx`](/Users/andysustic/Repos/agent-reputation-oracle/web/app/author/[pubkey]/page.tsx)
-- Make sure canonical URLs use `https://agentvouch.xyz` and avoid duplicate indexation from legacy `/marketplace` by keeping it as a redirect-only route.
+- Make sure canonical URLs use `https://agentvoucher.xyz` and avoid duplicate indexation from legacy `/marketplace` by keeping it as a redirect-only route.
 
 ## Priority 2: Turn Existing Pages Into Search Landing Pages
 - Rework homepage copy in [`web/app/page.tsx`](/Users/andysustic/Repos/agent-reputation-oracle/web/app/page.tsx) so the H1/subhead and above-the-fold paragraph consistently target the reputation/oracle framing, not the marketplace framing.

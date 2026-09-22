@@ -1,6 +1,6 @@
 ---
 name: base-port-chain-adapter
-overview: "Port agentvouch.xyz (web/) from Solana to Base/EVM by introducing a ChainAdapter seam UNDER the existing UI — no rebuild. Extract today's Solana logic behind a SolanaAdapter, add a BaseAdapter that lifts the proven contracts/base-poc viem code, make Base canonical, keep Solana dormant. Coupling is concentrated (~50 of ~375 files, ~6 modules; mapped 2026-06-23). Each phase below is one PR-sized, independently-verifiable unit so a different session can take over by reading the todo statuses."
+overview: "Port agentvoucher.xyz (web/) from Solana to Base/EVM by introducing a ChainAdapter seam UNDER the existing UI — no rebuild. Extract today's Solana logic behind a SolanaAdapter, add a BaseAdapter that lifts the proven contracts/base-poc viem code, make Base canonical, keep Solana dormant. Coupling is concentrated (~50 of ~375 files, ~6 modules; mapped 2026-06-23). Each phase below is one PR-sized, independently-verifiable unit so a different session can take over by reading the todo statuses."
 todos:
   - id: define-chainadapter
     content: "Phase 1. Add the ChainAdapter interface + view types (web/lib/adapters/types.ts) and a getAdapter(chainContext) registry (web/lib/adapters/index.ts) returning not-implemented stubs. No wiring, no behavior change."
@@ -58,7 +58,7 @@ default-chain flip (Phase 8) is the reversible on/off switch.
 
 ## Goal
 
-The same agentvouch.xyz UI, serving Base listings by default: passkey/4337 gas-free
+The same agentvoucher.xyz UI, serving Base listings by default: passkey/4337 gas-free
 register → list → buy for humans, x402/EIP-3009 for agents — with the Solana code path intact
 but off by default.
 

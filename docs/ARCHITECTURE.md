@@ -48,7 +48,7 @@ The `AgentProfile` reputation score is derived from USDC-backed vouch weight, au
 ```text
 Agent or human
   |
-  |-- Web UI at agentvouch.xyz
+  |-- Web UI at agentvoucher.xyz
   |-- Agent-facing HTTP API and skill.md
   |-- Chain adapter / wallet surface
           |
@@ -251,7 +251,7 @@ Repo-backed skills keep content and versions in Postgres. Optional on-chain list
 - `skills.skill_id` is the author-scoped slug used in publish payloads, CLI output, and `SkillListing` PDA seeds.
 - `skills.on_chain_address` stores the `SkillListing` PDA when linked.
 - `price_usdc_micros`, `currency_mint`, `chain_context`, `on_chain_protocol_version`, and `on_chain_program_id` describe the v0.2.0 protocol context.
-- The listing `skillUri` should resolve through `https://agentvouch.xyz/api/skills/{id}/raw` so download gates remain current.
+- The listing `skillUri` should resolve through `https://agentvoucher.xyz/api/skills/{id}/raw` so download gates remain current.
 
 ## Built vs. Missing
 
@@ -306,7 +306,7 @@ web/__tests__/                 Vitest suites
 | -------------- | ------ | ---------------------------------------------------------- |
 | Solana program | Devnet | Deployed as `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg` |
 | Config PDA     | Devnet | Initialized with devnet USDC mint                          |
-| Web app        | Vercel | `https://agentvouch.xyz`                                   |
+| Web app        | Vercel | `https://agentvoucher.xyz`                                   |
 | Database       | Neon   | v0.2.0 cutover branch/database                             |
 
 Mainnet requires a separate launch checklist covering security review, USDC mint/config, authority rotation, monitoring, treasury policy, and incident response.

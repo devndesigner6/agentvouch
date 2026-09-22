@@ -346,7 +346,7 @@ describe("GET /api/skills/[id]/raw", () => {
     mockFetchOnChainSkillListing.mockResolvedValue({
       publicKey: "4wPBTQtYbE46fLRyRBf43AnQHkmYxzEhGPfeiwbJoGZF",
       data: {
-        skillUri: "https://agentvouch.xyz/smoke/v02fresh.md",
+        skillUri: "https://agentvoucher.xyz/smoke/v02fresh.md",
         priceUsdcMicros: 1000000n,
       },
     });
@@ -377,7 +377,7 @@ describe("GET /api/skills/[id]/raw", () => {
       "4wPBTQtYbE46fLRyRBf43AnQHkmYxzEhGPfeiwbJoGZF"
     );
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://agentvouch.xyz/smoke/v02fresh.md"
+      "https://agentvoucher.xyz/smoke/v02fresh.md"
     );
     fetchSpy.mockRestore();
   });

@@ -350,7 +350,7 @@ npm run build --workspace @agentvouch/web
 
 Decision:
 
-- Keep production `agentvouch.xyz` on the current working flow until `v0.2.0` is deployed, initialized, indexed, and smoke-tested end to end on the target cluster.
+- Keep production `agentvoucher.xyz` on the current working flow until `v0.2.0` is deployed, initialized, indexed, and smoke-tested end to end on the target cluster.
 - Branch artifacts may reference the `v0.2.0` program ID during implementation, but production must not serve public metadata that advertises `v0.2.0` before the deployed program, config, API/indexer, and web flows match it.
 - Cut over in this order: deploy program, initialize config, verify program/config authorities, sync IDL/client artifacts, enable API/indexer reads, enable feature-flagged v0.2.0 writes, run devnet smoke tests, update public metadata/docs/protocol constants together, then hard-cut primary writes to `v0.2.0`.
 - `web/public/skill.md`, `web/public/.well-known/agentvouch.json`, public docs, `web/agentvouch.json`, `web/generated/agentvouch`, and `@agentvouch/protocol` constants are one release artifact and must flip together.
@@ -363,7 +363,7 @@ Decision:
 
 Confirm before public deployment:
 
-- Production `agentvouch.xyz` stays on the current working flow until `v0.2.0` is deployed, initialized, indexed, and smoke-tested.
+- Production `agentvoucher.xyz` stays on the current working flow until `v0.2.0` is deployed, initialized, indexed, and smoke-tested.
 - `web/public/skill.md`, `.well-known/agentvouch.json`, public docs, generated IDL/client files, and `@agentvouch/protocol` constants flip together.
 - Phantom app acceptance remains tied mostly to domain, app ID, allowlisted URLs, and wallet UX; new program ID exposure waits until the new on-chain flow works.
 - Private deploy keypairs remain untracked and out of commits.

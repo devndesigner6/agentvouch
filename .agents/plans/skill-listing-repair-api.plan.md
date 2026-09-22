@@ -30,7 +30,7 @@ Add a public, author-wallet-safe repair flow for repo-backed skills whose DB row
 
 ## Scope
 - In scope: new Next.js API routes under `/api/skills/{id}/listing/repair`, shared validation helpers, route tests, OpenAPI/docs updates, and optional client adoption after the API is stable.
-- In scope: repo-backed skills with wallet authors, current devnet program ID `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg`, native devnet USDC mint, and canonical `skillUri = https://agentvouch.xyz/api/skills/{id}/raw`.
+- In scope: repo-backed skills with wallet authors, current devnet program ID `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg`, native devnet USDC mint, and canonical `skillUri = https://agentvoucher.xyz/api/skills/{id}/raw`.
 - In scope: creating a missing listing, updating a mismatched existing listing when `update_skill_listing` is available, or returning `noop` when the current listing already matches.
 - Out of scope: server-side signing, relayer-paid transaction submission, custody of author keys, x402 settlement bridge enablement, mainnet defaults, and changing the existing `PATCH /api/skills/{id}` contract.
 
@@ -62,7 +62,7 @@ Response body:
   "repo_skill_id": "author-defined-skill-id",
   "action": "create",
   "listing_address": "SkillListingPda",
-  "skill_uri": "https://agentvouch.xyz/api/skills/{id}/raw",
+  "skill_uri": "https://agentvoucher.xyz/api/skills/{id}/raw",
   "price_usdc_micros": "1000000",
   "currency_mint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
   "chain_context": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",

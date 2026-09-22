@@ -75,7 +75,7 @@ function mockPurchaseClient() {
           author: "0x1111111111111111111111111111111111111111",
           skillIdHash:
             "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          uri: "https://agentvouch.xyz/api/skills/base/raw",
+          uri: "https://agentvoucher.xyz/api/skills/base/raw",
           name: "Base Purchase Test",
           description: "Exercises Base purchase verification provenance",
           priceUsdcMicros: BigInt(PRICE_MICROS),

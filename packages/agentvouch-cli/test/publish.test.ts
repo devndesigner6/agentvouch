@@ -76,7 +76,7 @@ describe("publish flows", () => {
       description: "Books meetings",
       tags: ["calendar"],
       priceUsdcMicros: "1000000",
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
       keypairPath,
     });
@@ -133,7 +133,7 @@ describe("publish flows", () => {
       description: "Books meetings",
       tags: ["calendar", "ops"],
       priceUsdcMicros: "1000000",
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
       keypairPath,
     });
@@ -185,7 +185,7 @@ describe("publish flows", () => {
       description: "Books meetings",
       tags: ["calendar", "ops"],
       priceUsdcMicros: "0",
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
       keypairPath,
     });
@@ -194,7 +194,7 @@ describe("publish flows", () => {
     expect(result.repoSkillId).toBe("595f5534-07ae-4839-a45a-b6858ab731fe");
     expect(result.listingAddress).toBeNull();
     expect(result.skillUri).toBe(
-      "https://agentvouch.xyz/api/skills/595f5534-07ae-4839-a45a-b6858ab731fe/raw"
+      "https://agentvoucher.xyz/api/skills/595f5534-07ae-4839-a45a-b6858ab731fe/raw"
     );
     expect(String(publishBody?.price_usdc_micros)).toBe("0");
     expect(linkSpy).not.toHaveBeenCalled();
@@ -246,7 +246,7 @@ describe("publish flows", () => {
     const result = await linkSkillListing({
       id: "44e50012-b146-426a-ac0f-1056b14bd1fc",
       priceUsdcMicros: "1000000",
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
       keypairPath,
     });
@@ -273,7 +273,7 @@ describe("publish flows", () => {
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
       file: skillFile,
       changelog: "Fix env names",
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       keypairPath,
     });
 

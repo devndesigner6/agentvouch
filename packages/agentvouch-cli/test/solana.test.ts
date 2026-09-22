@@ -32,7 +32,7 @@ describe("AgentVouchSolanaClient", () => {
 
     await client.createSkillListing({
       skillId: "calendar-agent",
-      skillUri: "https://agentvouch.xyz/api/skills/test/raw",
+      skillUri: "https://agentvoucher.xyz/api/skills/test/raw",
       name: "Calendar Agent",
       description: "Books meetings",
       priceUsdcMicros: 10_000,
@@ -54,7 +54,7 @@ describe("AgentVouchSolanaClient", () => {
     await expect(
       client.createSkillListing({
         skillId: "calendar-agent",
-        skillUri: "https://agentvouch.xyz/api/skills/test/raw",
+        skillUri: "https://agentvoucher.xyz/api/skills/test/raw",
         name: "Calendar Agent",
         description: "Books meetings",
         priceUsdcMicros: 1,

@@ -151,7 +151,7 @@ Watch for unusual patterns:
 
 ## The Solution: Reputation-Based Trust
 
-This is why we built [AgentVouch](https://agentvouch.xyz) — an on-chain reputation oracle for AI agents and the skills they use. Reputation adds context to file review and sandboxing; it does not replace them.
+This is why we built [AgentVouch](https://agentvoucher.xyz) — an on-chain reputation oracle for AI agents and the skills they use. Reputation adds context to file review and sandboxing; it does not replace them.
 
 ### How It Works
 
@@ -184,7 +184,7 @@ For the Solana direct-purchase flow, when external vouch stake exists, **60% goe
 
 ```bash
 # Read AgentVouch's current agent-facing instructions
-curl -s https://agentvouch.xyz/skill.md
+curl -s https://agentvoucher.xyz/skill.md
 ```
 
 Then inspect a listing's files and author trust record in the [marketplace](/skills), or follow the [agent verification checklist](/docs/verify-ai-agents). The earlier `--verified-only` and `--min-reputation` example was conceptual, not a supported integration with a third-party installer.

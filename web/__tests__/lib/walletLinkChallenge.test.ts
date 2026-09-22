@@ -49,7 +49,7 @@ describe("wallet link challenge", () => {
       accountId,
       chainContext: BASE_SEPOLIA_CHAIN_CONTEXT,
       normalizedAddress: "0x1111111111111111111111111111111111111111",
-      origin: "https://agentvouch.xyz/some/path",
+      origin: "https://agentvoucher.xyz/some/path",
       issuedAt,
       expiresAt,
     };
@@ -57,7 +57,7 @@ describe("wallet link challenge", () => {
     expect(message).toContain("Action: link-wallet");
     expect(message).toContain(`Account: ${accountId}`);
     expect(message).toContain(`Challenge: ${challengeId}`);
-    expect(message).toContain("Origin: https://agentvouch.xyz");
+    expect(message).toContain("Origin: https://agentvoucher.xyz");
     expect(
       buildWalletLinkChallengeMessage({
         ...base,
@@ -83,7 +83,7 @@ describe("wallet link challenge", () => {
       accountId,
       chainContext: getConfiguredSolanaChainContext(),
       normalizedAddress: address,
-      origin: "https://agentvouch.xyz",
+      origin: "https://agentvoucher.xyz",
       issuedAt,
       expiresAt,
     });
@@ -120,7 +120,7 @@ describe("wallet link challenge", () => {
       accountId,
       chainContext: BASE_SEPOLIA_CHAIN_CONTEXT,
       normalizedAddress: account.address.toLowerCase(),
-      origin: "https://agentvouch.xyz",
+      origin: "https://agentvoucher.xyz",
       issuedAt,
       expiresAt,
     });

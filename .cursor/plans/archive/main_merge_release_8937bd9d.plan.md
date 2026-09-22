@@ -1,9 +1,9 @@
 ---
 name: Main merge release
-overview: Define a low-risk path to merge `dev` into `main`, cut `agentvouch.xyz` over to the validated `main` production deployment, and create `v0.1.0` as the first stable post-hackathon GitHub release checkpoint.
+overview: Define a low-risk path to merge `dev` into `main`, cut `agentvoucher.xyz` over to the validated `main` production deployment, and create `v0.1.0` as the first stable post-hackathon GitHub release checkpoint.
 todos:
   - id: verify-domain-cutover-state
-    content: Confirm where `agentvouch.xyz` currently resolves, record the rollback target, and verify the `agentvouch` project still uses `main` as its production branch.
+    content: Confirm where `agentvoucher.xyz` currently resolves, record the rollback target, and verify the `agentvouch` project still uses `main` as its production branch.
     status: completed
   - id: define-ci-baseline
     content: "Use existing repo scripts as the initial CI baseline: root lint plus `web` lint, test, and build."
@@ -15,10 +15,10 @@ todos:
     content: Verify the `main` production deployment on Vercel is healthy before moving the custom domain.
     status: completed
   - id: cutover-custom-domain
-    content: Move `agentvouch.xyz` onto the `main` production deployment, smoke test it, and keep the previous live deployment ready for rollback.
+    content: Move `agentvoucher.xyz` onto the `main` production deployment, smoke test it, and keep the previous live deployment ready for rollback.
     status: completed
   - id: tag-and-release
-    content: Create `v0.1.0` and a GitHub Release after `agentvouch.xyz` is serving the validated `main` deployment.
+    content: Create `v0.1.0` and a GitHub Release after `agentvoucher.xyz` is serving the validated `main` deployment.
     status: completed
 isProject: false
 ---
@@ -29,7 +29,7 @@ isProject: false
 
 - `main` is already the Vercel production branch for the `agentvouch` project.
 - `agentvouch.vercel.app` reflects `main`.
-- `agentvouch.xyz` still needs to be moved from the current dev-driven deployment onto the validated `main` production deployment.
+- `agentvoucher.xyz` still needs to be moved from the current dev-driven deployment onto the validated `main` production deployment.
 - The release is therefore a domain cutover plan, not a production-branch switch plan.
 
 ## Goal
@@ -38,7 +38,7 @@ Ship one clean checkpoint where:
 
 - `dev` is merged into `main`
 - the resulting `main` production deployment is verified on Vercel
-- `agentvouch.xyz` serves that `main` deployment
+- `agentvoucher.xyz` serves that `main` deployment
 - `v0.1.0` marks the first stable post-hackathon GitHub release
 
 ## How Manual Is This?
@@ -52,7 +52,7 @@ Almost all of it can be done from the command line:
 The only truly manual parts are:
 
 - reading the PR diff before you merge
-- moving `agentvouch.xyz` if the exact alias/domain action is clearer in the dashboard than the CLI
+- moving `agentvoucher.xyz` if the exact alias/domain action is clearer in the dashboard than the CLI
 - deciding when to enable branch protection
 
 ## Manual CLI Runbook
@@ -99,14 +99,14 @@ Goal:
 
 - confirm the project is `agentvouch`
 - confirm production branch remains `main`
-- record the current live deployment behind `agentvouch.xyz` before any cutover
+- record the current live deployment behind `agentvoucher.xyz` before any cutover
 - record the current `main` production deployment URL so you know exactly what you intend to promote
 
 If the CLI output is unclear, confirm once in the Vercel dashboard:
 
 - `Settings -> Git -> Production Branch` is `main`
 - `Settings -> General -> Root Directory` still points at `web/`
-- `Domains -> agentvouch.xyz` shows where the apex currently routes
+- `Domains -> agentvoucher.xyz` shows where the apex currently routes
 
 Do not cut over the domain until you have the current live deployment URL written down as the rollback target.
 
@@ -207,19 +207,19 @@ What you are looking for:
 - expected production env vars are present
 - the app loads correctly at the production deployment URL before cutover
 
-### 7. Move `agentvouch.xyz` To The Validated `main` Deployment
+### 7. Move `agentvoucher.xyz` To The Validated `main` Deployment
 
-Once the `main` production deployment is healthy, move or confirm `agentvouch.xyz` on that deployment.
+Once the `main` production deployment is healthy, move or confirm `agentvoucher.xyz` on that deployment.
 
 Verify:
 
-- `agentvouch.xyz` is attached to the `agentvouch` project production deployment
+- `agentvoucher.xyz` is attached to the `agentvouch` project production deployment
 - apex and `www` behavior is intentional
-- callback URLs, webhooks, and canonical site URL settings point at `https://agentvouch.xyz`
+- callback URLs, webhooks, and canonical site URL settings point at `https://agentvoucher.xyz`
 
 Smoke test immediately after cutover:
 
-- homepage loads on `https://agentvouch.xyz`
+- homepage loads on `https://agentvoucher.xyz`
 - `/dashboard`, `/docs`, and `/skills` load
 - wallet/connect flow renders correctly
 - theme toggle and primary nav actions still display correctly
@@ -229,14 +229,14 @@ Smoke test immediately after cutover:
 Useful manual checks:
 
 ```bash
-curl -I https://agentvouch.xyz
-curl -I https://www.agentvouch.xyz
+curl -I https://agentvoucher.xyz
+curl -I https://www.agentvoucher.xyz
 vercel inspect https://agentvouch.vercel.app
 ```
 
 ### 8. Roll Back Fast If The Domain Cutover Fails
 
-If anything looks wrong after `agentvouch.xyz` moves:
+If anything looks wrong after `agentvoucher.xyz` moves:
 
 - restore the domain or alias to the previously recorded live deployment first
 - inspect the latest production deployment in Vercel
@@ -262,7 +262,7 @@ git push origin v0.1.0
 Create release notes manually:
 
 ```bash
-gh release create v0.1.0 --title "v0.1.0" --notes "First stable post-hackathon release. Merges the long-lived dev branch into main, validates the main production deployment, and cuts agentvouch.xyz over to that deployment. Solana program deployment remains a separate tracked operation unless explicitly included."
+gh release create v0.1.0 --title "v0.1.0" --notes "First stable post-hackathon release. Merges the long-lived dev branch into main, validates the main production deployment, and cuts agentvoucher.xyz over to that deployment. Solana program deployment remains a separate tracked operation unless explicitly included."
 ```
 
 If you want GitHub to draft notes from commits:
@@ -305,17 +305,17 @@ Verify these in the `agentvouch` Vercel project:
 
 - `Settings -> Git -> Production Branch` is set to `main`
 - `agentvouch.vercel.app` reflects the current `main` production deployment
-- `Domains -> agentvouch.xyz` is attached to the same production deployment after cutover
-- if you use `www.agentvouch.xyz`, decide whether `www` redirects to apex or apex redirects to `www`
+- `Domains -> agentvoucher.xyz` is attached to the same production deployment after cutover
+- if you use `www.agentvoucher.xyz`, decide whether `www` redirects to apex or apex redirects to `www`
 - project build settings still point at the correct app root: `web/`
 - Production environment variables exist and match what the app expects
-- callback URLs, webhook URLs, wallet/auth URLs, and any canonical site URL settings point at `https://agentvouch.xyz`
+- callback URLs, webhook URLs, wallet/auth URLs, and any canonical site URL settings point at `https://agentvoucher.xyz`
 
 Recommended order:
 
 1. Merge `dev` into `main`.
 2. Confirm the `main` production deployment is healthy.
-3. Move `agentvouch.xyz` onto that deployment.
+3. Move `agentvoucher.xyz` onto that deployment.
 4. Smoke test the live domain after deploy.
 5. Tag `v0.1.0`.
 6. Create the GitHub release.
@@ -330,9 +330,9 @@ Main risk areas during cutover:
 
 ## Post-Deploy Smoke Test
 
-After `main` is live on `https://agentvouch.xyz`, verify the basics:
+After `main` is live on `https://agentvoucher.xyz`, verify the basics:
 
-- homepage loads on `https://agentvouch.xyz`
+- homepage loads on `https://agentvoucher.xyz`
 - no obvious runtime error screen or broken styling
 - primary navigation loads expected pages such as `/dashboard`, `/docs`, and `/skills`
 - wallet/connect flow renders correctly
@@ -344,8 +344,8 @@ After `main` is live on `https://agentvouch.xyz`, verify the basics:
 Useful manual checks:
 
 ```bash
-curl -I https://agentvouch.xyz
-curl -I https://www.agentvouch.xyz
+curl -I https://agentvoucher.xyz
+curl -I https://www.agentvoucher.xyz
 vercel list
 vercel inspect https://agentvouch.vercel.app
 ```
@@ -358,7 +358,7 @@ vercel inspect https://agentvouch.vercel.app
 4. Review PR.
 5. Merge PR.
 6. Verify the `main` production deployment.
-7. Move `agentvouch.xyz` to that deployment.
+7. Move `agentvoucher.xyz` to that deployment.
 8. Smoke test the live domain.
 9. Tag `v0.1.0`.
 10. Create the GitHub release.

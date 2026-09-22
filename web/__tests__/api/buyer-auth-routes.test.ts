@@ -30,7 +30,7 @@ describe("buyer auth routes", () => {
 
   it("reports disabled auth without resolving a database account", async () => {
     const response = await getSession(
-      new Request("https://agentvouch.xyz/api/auth/buyer/session")
+      new Request("https://agentvoucher.xyz/api/auth/buyer/session")
     );
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({
@@ -53,7 +53,7 @@ describe("buyer auth routes", () => {
       accountId: "57ab388b-9564-49de-8027-dfd35f822fa4",
     });
     const response = await getSession(
-      new Request("https://agentvouch.xyz/api/auth/buyer/session")
+      new Request("https://agentvoucher.xyz/api/auth/buyer/session")
     );
     expect(await response.json()).toEqual({
       configured: true,
@@ -67,7 +67,7 @@ describe("buyer auth routes", () => {
     mocks.status.mockReturnValue({ enabled: true });
     mocks.sameOrigin.mockReturnValue(false);
     const response = await logout(
-      new Request("https://agentvouch.xyz/api/auth/buyer/logout", {
+      new Request("https://agentvoucher.xyz/api/auth/buyer/logout", {
         method: "POST",
         headers: { origin: "https://attacker.example" },
       })
@@ -81,9 +81,9 @@ describe("buyer auth routes", () => {
     mocks.sameOrigin.mockReturnValue(true);
     mocks.revoke.mockResolvedValue(true);
     const response = await logout(
-      new Request("https://agentvouch.xyz/api/auth/buyer/logout", {
+      new Request("https://agentvoucher.xyz/api/auth/buyer/logout", {
         method: "POST",
-        headers: { origin: "https://agentvouch.xyz" },
+        headers: { origin: "https://agentvoucher.xyz" },
       })
     );
     expect(response.status).toBe(200);

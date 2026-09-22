@@ -11,7 +11,7 @@ settlement path.
 
 ## Goal
 
-Make a first-time buyer go from `agentvouch.xyz` → "Sign in with Google" → "Buy this skill" in under a minute, with no wallet extension, no seed phrase, no out-of-band funding step. Same shape for sellers: "Sign in with Google" → "Publish this skill" with the platform absorbing the cold-wallet rent cost on devnet.
+Make a first-time buyer go from `agentvoucher.xyz` → "Sign in with Google" → "Buy this skill" in under a minute, with no wallet extension, no seed phrase, no out-of-band funding step. Same shape for sellers: "Sign in with Google" → "Publish this skill" with the platform absorbing the cold-wallet rent cost on devnet.
 
 Devnet first; anything that needs to flip to mainnet later (faucet vs. real funding, sponsor liability) lives in a single "switch to mainnet" checklist at the bottom of this doc.
 

@@ -6,7 +6,7 @@ v1 contract, custody, live smokes, and security review are complete.
 
 ## Production Shape
 
-- Public app: `https://agentvouch.xyz`
+- Public app: `https://agentvoucher.xyz`
 - Vercel project: `agentvouch`
 - Current Vercel root directory: `web/`
 
@@ -119,9 +119,9 @@ npm run build --workspace @agentvouch/web
 Read-only checks:
 
 ```bash
-curl -s https://agentvouch.xyz/api/skills | jq '.skills[:3]'
-curl -s https://agentvouch.xyz/api/x402/supported | jq
-curl -s https://agentvouch.xyz/skill.md | head
+curl -s https://agentvoucher.xyz/api/skills | jq '.skills[:3]'
+curl -s https://agentvoucher.xyz/api/x402/supported | jq
+curl -s https://agentvoucher.xyz/skill.md | head
 ```
 
 App checks:

@@ -268,7 +268,7 @@ Do not deploy the `v0.2.0` branch to production until the new program is deploye
 
 Cutover rules:
 
-- Keep production `agentvouch.xyz` stable on the current working flow while `v0.2.0` is still being built.
+- Keep production `agentvoucher.xyz` stable on the current working flow while `v0.2.0` is still being built.
 - Branch artifacts may reference the `v0.2.0` program ID during implementation, but production must not serve public metadata that advertises `v0.2.0` before deployed bytecode, config, API/indexer, and web flows match it.
 - Cut over in this order: deploy program, initialize config, verify program/config authorities, sync IDL/client artifacts, enable API/indexer reads, enable feature-flagged v0.2.0 writes, run devnet smoke tests, update public metadata/docs/protocol constants together, then hard-cut primary writes to `v0.2.0`.
 - Public metadata that agents, wallets, and reviewers can read must flip together at cutover: `web/public/skill.md`, `.well-known/agentvouch.json`, docs, generated IDL/client files, and `@agentvouch/protocol` constants.
@@ -848,7 +848,7 @@ Acceptance criteria:
 
 - Public docs describe USDC-native trust capital.
 - CLI help and examples use USDC.
-- Agent-facing install docs still use `https://agentvouch.xyz/skill.md`.
+- Agent-facing install docs still use `https://agentvoucher.xyz/skill.md`.
 
 Verification:
 
@@ -1116,7 +1116,7 @@ Tasks:
   - any docs pages that still emphasize old SOL or pre-USDC x402 assumptions
 - Add or update focused tests for SEO and LLM-facing output:
   - metadata strings do not reference the old program ID or stale SOL pricing
-  - public agent files reference the canonical `agentvouch.xyz` install path
+  - public agent files reference the canonical `agentvoucher.xyz` install path
   - skill and author discovery JSON expose USDC-native fields and CAIP-2 chain context
 - Verify generated/static public docs match the active program, current API contract, and CLI install/publish flows.
 

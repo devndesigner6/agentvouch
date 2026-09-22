@@ -72,21 +72,21 @@ describe("buyer session boundary", () => {
   it("requires an exact same-origin Origin header for mutations", () => {
     expect(
       isSameOriginMutation(
-        new Request("https://agentvouch.xyz/api/auth/buyer/logout", {
-          headers: { origin: "https://agentvouch.xyz" },
+        new Request("https://agentvoucher.xyz/api/auth/buyer/logout", {
+          headers: { origin: "https://agentvoucher.xyz" },
         })
       )
     ).toBe(true);
     expect(
       isSameOriginMutation(
-        new Request("https://agentvouch.xyz/api/auth/buyer/logout", {
+        new Request("https://agentvoucher.xyz/api/auth/buyer/logout", {
           headers: { origin: "https://attacker.example" },
         })
       )
     ).toBe(false);
     expect(
       isSameOriginMutation(
-        new Request("https://agentvouch.xyz/api/auth/buyer/logout")
+        new Request("https://agentvoucher.xyz/api/auth/buyer/logout")
       )
     ).toBe(false);
   });

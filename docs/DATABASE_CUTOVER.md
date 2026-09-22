@@ -178,9 +178,9 @@ Cutover:
 Production smoke:
 
 ```bash
-curl -s https://agentvouch.xyz/api/skills | jq '.skills[:3]'
-curl -s https://agentvouch.xyz/api/skills/activity | jq
-curl -s https://agentvouch.xyz/api/x402/supported | jq
+curl -s https://agentvoucher.xyz/api/skills | jq '.skills[:3]'
+curl -s https://agentvoucher.xyz/api/skills/activity | jq
+curl -s https://agentvoucher.xyz/api/x402/supported | jq
 ```
 
 ## Rollback
@@ -205,6 +205,6 @@ Cutover executed on 2026-05-05.
 - Target database name: `neondb`
 - Production envs updated: `DATABASE_URL`, `DATABASE_URL_UNPOOLED`
 - Production env values were added as sensitive Vercel env vars.
-- Production redeploy completed and aliased to `www.agentvouch.xyz`.
+- Production redeploy completed and aliased to `www.agentvoucher.xyz`.
 
 Rollback source values were pulled to a local temp file during cutover and must not be committed. If rollback is needed, restore the old production `DATABASE_URL` and `DATABASE_URL_UNPOOLED`, then redeploy production.

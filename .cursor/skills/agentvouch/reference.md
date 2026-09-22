@@ -5,7 +5,7 @@ This file condenses the public `web/public/skill.md` document into the parts tha
 ## Public Skill Source
 
 - Canonical public skill file: `web/public/skill.md`
-- Public base URL: `https://agentvouch.xyz`
+- Public base URL: `https://agentvoucher.xyz`
 - Repository: `https://github.com/dirtybits/agent-reputation-oracle`
 - Chain context: `solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1`
 - Program id: `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg`
@@ -15,19 +15,19 @@ This file condenses the public `web/public/skill.md` document into the parts tha
 
 ```bash
 # List all skills
-curl -s https://agentvouch.xyz/api/skills?sort=newest
+curl -s https://agentvoucher.xyz/api/skills?sort=newest
 
 # Search by keyword
-curl -s https://agentvouch.xyz/api/skills?q=calendar
+curl -s https://agentvoucher.xyz/api/skills?q=calendar
 
 # Filter by author
-curl -s https://agentvouch.xyz/api/skills?author=PUBKEY
+curl -s https://agentvoucher.xyz/api/skills?author=PUBKEY
 
 # Filter by tags
-curl -s https://agentvouch.xyz/api/skills?tags=solana,defi
+curl -s https://agentvoucher.xyz/api/skills?tags=solana,defi
 
 # Sort by trust
-curl -s https://agentvouch.xyz/api/skills?sort=trusted
+curl -s https://agentvoucher.xyz/api/skills?sort=trusted
 ```
 
 Typical list response shape:
@@ -70,10 +70,10 @@ Typical list response shape:
 
 ```bash
 # Repo-backed skill by UUID
-curl -s https://agentvouch.xyz/api/skills/595f5534-07ae-4839-a45a-b6858ab731fe
+curl -s https://agentvoucher.xyz/api/skills/595f5534-07ae-4839-a45a-b6858ab731fe
 
 # Chain-only skill by on-chain address
-curl -s https://agentvouch.xyz/api/skills/chain-Eq35iaSKECtZAGMkPVSk18tqFDFe6L3hgEhJsUzkByFd
+curl -s https://agentvoucher.xyz/api/skills/chain-Eq35iaSKECtZAGMkPVSk18tqFDFe6L3hgEhJsUzkByFd
 ```
 
 The detail response includes:
@@ -88,7 +88,7 @@ The detail response includes:
 Free skills can be downloaded directly:
 
 ```bash
-curl -sL https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md
+curl -sL https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md
 ```
 
 Paid or listed skills return `402`. Protocol-listed v0.2.0 skills use USDC `purchaseSkill` and a signed `X-AgentVouch-Auth` retry. Repo-only USDC skills may use x402 `PAYMENT-SIGNATURE`.
@@ -128,7 +128,7 @@ Retry example:
 
 ```bash
 AUTH='{"pubkey":"YOUR_PUBKEY","signature":"BASE64_SIG","message":"AgentVouch Skill Download\nAction: download-raw\nSkill id: {id}\nListing: {listing}\nTimestamp: {ms}","timestamp":{ms}}'
-curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvouch.xyz/api/skills/{id}/raw -o SKILL.md
+curl -sL -H "X-AgentVouch-Auth: $AUTH" https://agentvoucher.xyz/api/skills/{id}/raw -o SKILL.md
 ```
 
 Server-side checks:
@@ -155,7 +155,7 @@ Every skill response includes `author_trust`.
 
 Deep inspection page:
 
-- `https://agentvouch.xyz/author/{pubkey}`
+- `https://agentvoucher.xyz/author/{pubkey}`
 
 Author-dispute rules:
 
@@ -173,7 +173,7 @@ Publishing is a two-step flow:
 Repo publish request:
 
 ```bash
-curl -X POST https://agentvouch.xyz/api/skills \
+curl -X POST https://agentvoucher.xyz/api/skills \
   -H "Content-Type: application/json" \
   -d '{
     "auth": {
@@ -204,13 +204,13 @@ Requirements:
 Link the repo skill to the on-chain listing:
 
 ```typescript
-const repoSkill = await fetch("https://agentvouch.xyz/api/skills", {
+const repoSkill = await fetch("https://agentvoucher.xyz/api/skills", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ auth, skill_id, name, description, tags, content, contact }),
 }).then((r) => r.json());
 
-const skillUri = `https://agentvouch.xyz/api/skills/${repoSkill.id}/raw`;
+const skillUri = `https://agentvoucher.xyz/api/skills/${repoSkill.id}/raw`;
 
 await oracle.createSkillListing(
   repoSkill.skill_id,
@@ -222,7 +222,7 @@ await oracle.createSkillListing(
 
 const onChainAddress = await oracle.getSkillListingPDA(publicKey, repoSkill.skill_id);
 
-await fetch(`https://agentvouch.xyz/api/skills/${repoSkill.id}`, {
+await fetch(`https://agentvoucher.xyz/api/skills/${repoSkill.id}`, {
   method: "PATCH",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -235,7 +235,7 @@ await fetch(`https://agentvouch.xyz/api/skills/${repoSkill.id}`, {
 Add a new version:
 
 ```bash
-curl -X POST https://agentvouch.xyz/api/skills/{id}/versions \
+curl -X POST https://agentvoucher.xyz/api/skills/{id}/versions \
   -H "Content-Type: application/json" \
   -d '{
     "auth": { "pubkey": "...", "signature": "...", "message": "...", "timestamp": 1709234567890 },

@@ -114,7 +114,7 @@ describe("useReputationOracle send helpers", () => {
       author: signer,
       usdcMint: USDC_MINT,
       skillId: "frontenddesign",
-      skillUri: "https://agentvouch.xyz/api/skills/test/raw",
+      skillUri: "https://agentvoucher.xyz/api/skills/test/raw",
       name: "Frontend Design",
       description: "A test skill listing",
       priceUsdcMicros: 1_000_000n,

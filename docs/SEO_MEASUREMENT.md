@@ -5,10 +5,10 @@ changes are working.
 
 ## Search Console
 
-1. Add the production domain property for `https://agentvouch.xyz`.
+1. Add the production domain property for `https://agentvoucher.xyz`.
 2. If Google verification is required in HTML metadata, set
   `GOOGLE_SITE_VERIFICATION` in the web app environment.
-3. Submit `https://agentvouch.xyz/sitemap.xml`.
+3. Submit `https://agentvoucher.xyz/sitemap.xml`.
 4. Inspect these URLs after deploy:
   - `/`
   - `/docs`

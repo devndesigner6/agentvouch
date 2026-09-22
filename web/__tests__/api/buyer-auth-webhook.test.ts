@@ -18,7 +18,7 @@ vi.mock("@/lib/buyerAccounts", () => ({
 import { POST } from "@/app/api/auth/buyer/webhook/route";
 
 function webhookRequest() {
-  return new NextRequest("https://agentvouch.xyz/api/auth/buyer/webhook", {
+  return new NextRequest("https://agentvoucher.xyz/api/auth/buyer/webhook", {
     method: "POST",
     body: "{}",
   });

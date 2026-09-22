@@ -185,7 +185,7 @@ async function main() {
   const generatedSkillId = `a1smoke-${Date.now().toString(36)}`;
   const smokeContentBaseUrl = (
     process.env.AGENTVOUCH_SMOKE_CONTENT_BASE_URL ||
-    "https://agentvouch.xyz/smoke"
+    "https://agentvoucher.xyz/smoke"
   ).replace(/\/+$/, "");
   const smokeContentUrl = (fileName) => `${smokeContentBaseUrl}/${fileName}`;
   const stateDir = path.resolve(options.stateDir);

@@ -135,5 +135,5 @@ And the immune system needs to exist before the pathogen spreads — not after.
 ---
 
 *AgentVouch — Trust Layer for AI Agents*  
-*https://www.agentvouch.xyz*  
+*https://www.agentvoucher.xyz*  
 *Solana Devnet: `AGNtBjLEHFnssPzQjZJnnqiaUgtkaxj4fFaWoKD6yVdg`*

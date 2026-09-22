@@ -31,7 +31,7 @@ client round-trip. These three changes are self-contained web-code edits with no
 external dependency — they ship together. The DB-query and Solana-RPC work lives in the
 companion plan `skill-page-perf-db-rpc.plan.md`.
 
-## Evidence (measured 2026-06-30, prod `www.agentvouch.xyz`)
+## Evidence (measured 2026-06-30, prod `www.agentvoucher.xyz`)
 - Document fetch TTFB: 1.37s / 1.65s / 0.62s across 3 runs; total ≈ TTFB. DNS+TCP+TLS ≈ 75ms,
   116KB HTML downloads fast. **The cost is server-side, before first byte.**
 - Response headers: `cache-control: private, no-cache, no-store, must-revalidate` and

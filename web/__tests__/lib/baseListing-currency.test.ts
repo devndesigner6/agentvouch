@@ -83,7 +83,7 @@ describe("isSameSkillRawUri", () => {
     expect(
       isSameSkillRawUri({
         actual: "http://localhost:3001/api/skills/uuid-skill-1/raw",
-        expected: "https://agentvouch.xyz/api/skills/uuid-skill-1/raw",
+        expected: "https://agentvoucher.xyz/api/skills/uuid-skill-1/raw",
       })
     ).toBe(true);
   });
@@ -92,7 +92,7 @@ describe("isSameSkillRawUri", () => {
     expect(
       isSameSkillRawUri({
         actual: "http://localhost:3001/api/skills/uuid-skill-2/raw",
-        expected: "https://agentvouch.xyz/api/skills/uuid-skill-1/raw",
+        expected: "https://agentvoucher.xyz/api/skills/uuid-skill-1/raw",
       })
     ).toBe(false);
   });

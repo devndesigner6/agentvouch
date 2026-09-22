@@ -26,7 +26,7 @@ isProject: false
 Validate the full agent-facing flow surface for AgentVouch with an "would an autonomous agent actually succeed here?" lens.
 
 Confirmed scope:
-- Target both the live surface at `https://agentvouch.xyz` and the local repo behavior.
+- Target both the live surface at `https://agentvoucher.xyz` and the local repo behavior.
 - Use the best-fit signing method per flow.
 - Use devnet-funded wallet paths for live transaction-required checks.
 

@@ -57,7 +57,7 @@ describe("updateSkill", () => {
 
     const result = await updateSkill({
       file: outputPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -124,7 +124,7 @@ describe("updateSkill", () => {
 
     const result = await updateSkill({
       file: outputPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -215,7 +215,7 @@ describe("updateSkill", () => {
     const result = await updateSkill({
       file: outputPath,
       keypairPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -308,7 +308,7 @@ describe("updateSkill", () => {
     const result = await updateSkill({
       file: outputPath,
       keypairPath,
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 
@@ -357,7 +357,7 @@ describe("updateSkill", () => {
     const result = await updateSkill({
       file: outputPath,
       id: "595f5534-07ae-4839-a45a-b6858ab731fe",
-      baseUrl: "https://agentvouch.xyz",
+      baseUrl: "https://agentvoucher.xyz",
       rpcUrl: "https://api.devnet.solana.com",
     });
 

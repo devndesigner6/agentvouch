@@ -138,7 +138,7 @@ Keep the first public CLI scoped to the current devnet deployment:
 Acceptance criteria:
 
 - CLI publish/vouch/link commands fail closed on unsupported networks.
-- Read-only commands can still target `https://agentvouch.xyz` without requiring a wallet.
+- Read-only commands can still target `https://agentvoucher.xyz` without requiring a wallet.
 
 ### 7. Refresh docs and command help
 Add `packages/agentvouch-cli/README.md` with:
@@ -187,7 +187,7 @@ Release acceptance criteria:
 - If the public CLI depends on a package that cannot be installed, publish a patch that bundles/removes the dependency or publishes the dependency properly.
 
 ## Blockers And Assumptions
-- Assumption: `https://agentvouch.xyz` remains the canonical API base URL for agent-facing CLI flows.
+- Assumption: `https://agentvoucher.xyz` remains the canonical API base URL for agent-facing CLI flows.
 - Assumption: the first public package is allowed to be devnet-only and should say so plainly.
 - Assumption: `@agentvouch/protocol` only needs a public package if the CLI cannot cleanly bundle or inline the small protocol surface it uses.
 - Blocker: if the on-chain program does not expose a safe update path for existing listings, the CLI must refuse mismatched existing PDAs instead of attempting a relist.

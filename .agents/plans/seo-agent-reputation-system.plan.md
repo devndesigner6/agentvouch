@@ -41,7 +41,7 @@ volume and exact-phrase targeting**, not infrastructure.
 
 ## Context (verified 2026-07-03)
 
-Google Search Console for agentvouch.xyz (6-month window) shows the site ranking for
+Google Search Console for agentvoucher.xyz (6-month window) shows the site ranking for
 "agent reputation system" (avg position ~5.2) despite the phrase appearing **nowhere as a
 deliberate target**. Current language is "reputation *oracle*", "trust *layer*",
 "reputation-backed". Google is bridging *oracle → system* semantically.
